@@ -127,17 +127,16 @@ export default function FeaturesPage() {
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-feature-crm"
-                  label="Admission CRM Kanban Pipeline Animation"
-                  assetNeeded="Visual animation demonstrating drag-and-drop lead cards progressing through inquiry stages."
-                  searchKeywords="CRM kanban pipeline dashboard animation Lottie JSON"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="layers"
-                />
+              {/* Visual Illustration: Admission CRM */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex h-[210px] sm:h-[260px] lg:h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border-subtle bg-white p-4 shadow-soft sm:p-6 transition-all hover:shadow-medium">
+                  <img
+                    src="/assets/images/Admission%20CRM%20Kanban%20Pipeline%20Animation.svg"
+                    alt="Admission CRM Kanban Pipeline Interactive Illustration"
+                    className="h-auto max-h-full w-auto max-w-full object-contain object-center"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -150,16 +149,16 @@ export default function FeaturesPage() {
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-              <div className="order-2 lg:order-1">
-                <AssetPlaceholder
-                  id="placeholder-feature-content"
-                  label="AI Marketing Content Generation Animation"
-                  assetNeeded="Animation illustrating instant creation of high-converting social media copy and WhatsApp templates."
-                  searchKeywords="AI writing assistant content generation animation Lottie"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="sparkles"
-                />
+              {/* Visual Illustration: AI Content Studio */}
+              <div className="order-2 flex w-full items-center justify-center lg:order-1">
+                <div className="relative flex h-[210px] sm:h-[260px] lg:h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border-subtle bg-white p-4 shadow-soft sm:p-6 transition-all hover:shadow-medium">
+                  <img
+                    src="/assets/images/AI%20Marketing%20Content%20Generation%20Animation.svg"
+                    alt="AI Marketing Content Generation Interactive Illustration"
+                    className="h-auto max-h-full w-auto max-w-[90%] sm:max-w-[85%] lg:max-w-[80%] object-contain object-center"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               <div className="order-1 lg:order-2">
