@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { Menu, Bell, User } from 'lucide-react';
-import { Badge } from '@/lib/../components/ui/badge';
+import { Menu, Bell, User, LogOut } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { signOutAction } from '@/app/auth/actions';
 
 interface TopHeaderProps {
   onMenuToggle?: () => void;
@@ -53,11 +54,25 @@ export function TopHeader({
           <Bell className="h-5 w-5" />
         </button>
 
-        {/* User Avatar Placeholder */}
+        {/* User Profile & Sign Out */}
         <div className="flex items-center gap-2 border-l border-border-subtle pl-3 md:pl-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 border border-brand-100 text-brand-900 font-semibold text-sm">
+          <div
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 border border-brand-100 text-brand-900 font-semibold text-sm"
+            title="User Profile"
+          >
             <User className="h-5 w-5 text-brand-900" />
           </div>
+
+          <form action={signOutAction}>
+            <button
+              type="submit"
+              aria-label="Sign out of AcademyGrowth"
+              title="Sign out"
+              className="flex h-9 w-9 items-center justify-center rounded-btn border border-border-subtle text-text-secondary hover:bg-surface-muted hover:text-semantic-danger transition-colors"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          </form>
         </div>
       </div>
     </header>

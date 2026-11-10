@@ -52,7 +52,44 @@ export async function updateSession(request: NextRequest) {
   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
   // issues with users being randomly logged out.
   // Using getUser() ensures token validation with Supabase Auth backend.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname = request.nextUrl.pathname;
+
+  // Protected application routes
+  const isProtectedRoute =
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/settings') ||
+    pathname.startsWith('/admissions') ||
+    pathname.startsWith('/marketing') ||
+    pathname.startsWith('/insights') ||
+    pathname.startsWith('/onboarding') ||
+    pathname === '/reset-password';
+
+  // Auth routes (redirect already authenticated users to dashboard)
+  const isAuthRoute =
+    pathname === '/login' ||
+    pathname === '/signup';
+
+  if (!user && isProtectedRoute) {
+    const loginUrl = new URL('/login', request.url);
+    loginUrl.searchParams.set('next', pathname);
+    const redirectResponse = NextResponse.redirect(loginUrl);
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
+  }
+
+  if (user && isAuthRoute) {
+    const redirectResponse = NextResponse.redirect(new URL('/dashboard', request.url));
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
+  }
 
   // IMPORTANT: Return the supabaseResponse object as it contains the updated cookies.
   return supabaseResponse;
