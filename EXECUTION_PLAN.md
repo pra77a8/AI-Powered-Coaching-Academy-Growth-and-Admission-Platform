@@ -1222,10 +1222,10 @@ Epic -> Feature -> Development Task [TSK-XXX] -> Acceptance Criteria
 - **Feature 1.2: Tenant Database Schema & RLS**
   - `TSK-DB-001` [Critical]: Create PostgreSQL schema migration for `institutes`, `users`, `institute_memberships`, `institute_invitations`, `courses`, and `subscriptions`.
     - *Dependencies:* `TSK-FND-002` | *Output:* SQL migration scripts (`supabase/migrations/20261110000001_phase1_initial_schema.sql`).
-    - *Acceptance:* Tables instantiate with all foreign keys, unique slugs, branch hierarchy self-reference, composite uniqueness, and atomic RPC functions; validated with TypeScript build. [Completed Locally]
+    - *Acceptance:* Tables instantiate with all foreign keys, unique slugs, branch hierarchy self-reference, composite uniqueness, single-active-owner partial unique index (`idx_single_active_owner_per_user`), invariant guard triggers, and hardened atomic RPC functions (`create_institute_with_owner`, `accept_employee_invitation`, `update_my_profile`); validated with TypeScript build. [Completed Locally & Hardened]
   - `TSK-DB-002` [Critical]: Implement and verify PostgreSQL Row Level Security (RLS) tenant isolation policies.
-    - *Dependencies:* `TSK-DB-001` | *Output:* RLS policies (`supabase/migrations/20261110000002_phase1_rls_policies.sql`).
-    - *Acceptance:* Integration test confirms User A from Institute 1 receives 0 rows when querying Institute 2 data; suspended users have 0 access; role boundaries enforced. [Completed Locally]
+    - *Dependencies:* `TSK-DB-001` | *Output:* RLS policies (`supabase/migrations/20261110000002_phase1_rls_policies.sql`) and automated test suite (`supabase/tests/test_phase1_rls.sql`).
+    - *Acceptance:* Integration test confirms User A from Institute 1 receives 0 rows when querying Institute 2 data; public scraping prevented via dedicated public inquiry RPCs (`get_public_institute_by_slug`, `get_public_courses`); caller-scoped helpers (`has_active_membership`, `get_my_institutes`, `get_my_role`); suspended users have 0 access; role boundaries enforced; subscriptions client write prohibited; all 10 SQL test assertions pass. [Completed Locally & Hardened]
 - **Feature 1.3: User Authentication & Onboarding**
   - `TSK-AUTH-001` [High]: Build Email/Password Sign Up & Login views with validation.
     - *Dependencies:* `TSK-DB-002` | *Output:* UI and Auth actions.

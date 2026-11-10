@@ -239,6 +239,7 @@ export interface Database {
         };
       };
     };
+    Views: Record<string, never>;
     Functions: {
       create_institute_with_owner: {
         Args: {
@@ -259,22 +260,57 @@ export interface Database {
         };
         Returns: string;
       };
-      get_user_institutes: {
+      update_my_profile: {
         Args: {
-          p_user_id: string;
+          p_full_name: string;
+          p_phone?: string | null;
         };
+        Returns: Database['public']['Tables']['users']['Row'];
+      };
+      get_my_institutes: {
+        Args: Record<string, never>;
         Returns: {
           institute_id: string;
         }[];
       };
-      get_user_role: {
+      get_my_role: {
         Args: {
-          p_user_id: string;
           p_institute_id: string;
         };
-        Returns: string;
+        Returns: string | null;
+      };
+      has_active_membership: {
+        Args: {
+          p_institute_id: string;
+        };
+        Returns: boolean;
+      };
+      get_public_institute_by_slug: {
+        Args: {
+          p_slug: string;
+        };
+        Returns: {
+          id: string;
+          name: string;
+          slug: string;
+          phone: string;
+          city: string;
+          state: string;
+          logo_url: string | null;
+        }[];
+      };
+      get_public_courses: {
+        Args: {
+          p_institute_id: string;
+        };
+        Returns: {
+          id: string;
+          institute_id: string;
+          name: string;
+          exam_category: ExamCategory;
+          base_fee: number;
+        }[];
       };
     };
   };
 }
-
