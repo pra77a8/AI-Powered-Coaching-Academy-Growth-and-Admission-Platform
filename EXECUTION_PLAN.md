@@ -1217,8 +1217,8 @@ Epic -> Feature -> Development Task [TSK-XXX] -> Acceptance Criteria
     - *Dependencies:* None | *Output:* Repository scaffold.
     - *Acceptance:* `pnpm build` executes cleanly with zero warnings.
   - `TSK-FND-002` [Critical]: Configure Supabase client and server SSR utilities (`@supabase/ssr`).
-    - *Dependencies:* `TSK-FND-001` | *Output:* Supabase context helpers.
-    - *Acceptance:* Server Components successfully read session cookies.
+    - *Dependencies:* `TSK-FND-001` | *Output:* Supabase context helpers (`lib/supabase/client.ts`, `server.ts`, `middleware.ts`).
+    - *Acceptance:* Server Components and Middleware successfully read, refresh, and synchronize session cookies. [Completed]
 - **Feature 1.2: Tenant Database Schema & RLS**
   - `TSK-DB-001` [Critical]: Create PostgreSQL schema migration for `institutes`, `users`, `institute_memberships`, and `courses`.
     - *Dependencies:* `TSK-FND-002` | *Output:* SQL migration scripts.
