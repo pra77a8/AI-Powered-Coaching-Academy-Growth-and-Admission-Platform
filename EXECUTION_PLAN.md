@@ -1220,9 +1220,9 @@ Epic -> Feature -> Development Task [TSK-XXX] -> Acceptance Criteria
     - *Dependencies:* `TSK-FND-001` | *Output:* Supabase context helpers (`lib/supabase/client.ts`, `server.ts`, `middleware.ts`).
     - *Acceptance:* Server Components and Middleware successfully read, refresh, and synchronize session cookies. [Completed]
 - **Feature 1.2: Tenant Database Schema & RLS**
-  - `TSK-DB-001` [Critical]: Create PostgreSQL schema migration for `institutes`, `users`, `institute_memberships`, and `courses`.
-    - *Dependencies:* `TSK-FND-002` | *Output:* SQL migration scripts.
-    - *Acceptance:* Tables instantiate with all foreign keys, unique slugs, and indexes.
+  - `TSK-DB-001` [Critical]: Create PostgreSQL schema migration for `institutes`, `users`, `institute_memberships`, `institute_invitations`, `courses`, and `subscriptions`.
+    - *Dependencies:* `TSK-FND-002` | *Output:* SQL migration scripts (`supabase/migrations/20261110000001_phase1_initial_schema.sql`).
+    - *Acceptance:* Tables instantiate with all foreign keys, unique slugs, branch hierarchy self-reference, composite uniqueness, and atomic RPC functions; validated with TypeScript build. [Completed Locally]
   - `TSK-DB-002` [Critical]: Implement and verify PostgreSQL Row Level Security (RLS) tenant isolation policies.
     - *Dependencies:* `TSK-DB-001` | *Output:* RLS policies.
     - *Acceptance:* Integration test confirms User A from Institute 1 receives 0 rows when querying Institute 2 data.
