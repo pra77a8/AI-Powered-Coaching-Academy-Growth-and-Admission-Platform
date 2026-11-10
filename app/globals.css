@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-brand-950: #073B36;
+    --color-brand-900: #0B4F49;
+    --color-brand-800: #12645B;
+    --color-brand-700: #18796D;
+    --color-brand-100: #DCEFEA;
+    --color-brand-50: #EFF7F4;
+    --color-background: #F7F8F6;
+    --color-surface: #FFFFFF;
+    --color-surface-muted: #F1F4F2;
+    --color-text-primary: #172522;
+    --color-text-secondary: #66736F;
+    --color-border: #E2E8E5;
+    --color-border-strong: #CBD6D1;
+  }
+
+  * {
+    border-color: #E2E8E5;
+  }
+
+  body {
+    background-color: #F7F8F6;
+    color: #172522;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Responsiveness: prevent iOS auto-zoom by ensuring minimum 16px on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Touch-target optimization for mobile devices */
+@media (max-width: 768px) {
+  button, 
+  a.btn,
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
