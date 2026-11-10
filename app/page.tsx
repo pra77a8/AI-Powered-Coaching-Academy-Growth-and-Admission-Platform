@@ -16,10 +16,7 @@ import {
   FileEdit,
   EyeOff,
   Check,
-  Megaphone,
   UserCheck,
-  GraduationCap,
-  MessageSquare,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -55,10 +52,10 @@ export default function HomePage() {
               <span>Smarter Growth for Coaching Institutes</span>
             </div>
 
-            {/* Main Headline */}
+            {/* Main Headline (Clean green text highlight without underline) */}
             <h1 className="mx-auto max-w-4xl font-heading text-3xl font-extrabold tracking-tight text-text-primary sm:text-5xl lg:text-6xl leading-[1.15]">
               Turn More Inquiries into{' '}
-              <span className="text-brand-900 underline decoration-brand-400 decoration-wavy decoration-from-font underline-offset-8">
+              <span className="text-brand-900">
                 Admissions
               </span>{' '}
               with AI
@@ -75,7 +72,7 @@ export default function HomePage() {
               <Link href="/signup" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-brand-900 text-white hover:bg-brand-800 h-12 px-8 text-base font-semibold shadow-soft"
+                  className="w-full sm:w-auto bg-brand-900 text-white hover:bg-brand-800 h-12 px-8 text-base font-semibold shadow-medium hover:shadow-strong transition-all duration-200"
                 >
                   <span>Start Free Trial</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -85,7 +82,7 @@ export default function HomePage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto border-border-subtle bg-white hover:bg-neutral-50 text-text-primary h-12 px-8 text-base font-medium shadow-soft"
+                  className="w-full sm:w-auto border-border-subtle bg-white hover:bg-neutral-50 text-text-primary h-12 px-8 text-base font-medium shadow-soft hover:shadow-medium transition-all duration-200"
                 >
                   Watch Demo
                 </Button>
@@ -109,10 +106,10 @@ export default function HomePage() {
             </div>
 
             {/* ========================================================================= */}
-            {/* 2. DASHBOARD PREVIEW IN ARCHITECTURAL FRAME                               */}
+            {/* 2. DASHBOARD PREVIEW IN ARCHITECTURAL FRAME (ENHANCED DEPTH)               */}
             {/* ========================================================================= */}
             <div className="relative mx-auto mt-12 sm:mt-16 max-w-6xl">
-              <div className="group relative rounded-2xl border border-brand-200/80 bg-white/90 p-2.5 sm:p-4 shadow-strong backdrop-blur-sm sm:rounded-3xl">
+              <div className="group relative rounded-2xl border border-brand-200/90 bg-white/95 p-2.5 sm:p-4 shadow-strong backdrop-blur-sm sm:rounded-3xl transition-all duration-300 hover:shadow-elevation hover:border-brand-300">
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-neutral-100">
                   <Image
                     src="/assets/images/AcademyGrowth SaaS Dashboard Hero.png"
@@ -129,7 +126,7 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 3. PROBLEM SECTION (FIXED BALANCED 3-COLUMN DESKTOP / 2-COL TABLET GRID)   */}
+        {/* 3. PROBLEM SECTION (BALANCED 3-COLUMN DESKTOP / 2-COL TABLET GRID)         */}
         {/* ========================================================================= */}
         <section className="border-t border-border-subtle bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -142,8 +139,8 @@ export default function HomePage() {
             {/* Desktop: 3 equal columns in row 1, centered 2 equal columns in row 2 */}
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6">
               {/* Problem 1 */}
-              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600 mb-4 shrink-0">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1 min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600 mb-4 shrink-0 transition-transform duration-200 group-hover:scale-105">
                   <FileSpreadsheet className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -156,8 +153,8 @@ export default function HomePage() {
               </div>
 
               {/* Problem 2 */}
-              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 mb-4 shrink-0">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1 min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 mb-4 shrink-0 transition-transform duration-200 group-hover:scale-105">
                   <Clock className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -170,8 +167,8 @@ export default function HomePage() {
               </div>
 
               {/* Problem 3 */}
-              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 mb-4 shrink-0">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1 min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 mb-4 shrink-0 transition-transform duration-200 group-hover:scale-105">
                   <TrendingDown className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -184,8 +181,8 @@ export default function HomePage() {
               </div>
 
               {/* Problem 4 (Desktop centered 2-col row: offset 1 column via lg:col-start-2) */}
-              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-start-2 lg:col-span-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 mb-4 shrink-0">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1 min-h-[220px] sm:col-span-1 lg:col-start-2 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 mb-4 shrink-0 transition-transform duration-200 group-hover:scale-105">
                   <FileEdit className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -198,8 +195,8 @@ export default function HomePage() {
               </div>
 
               {/* Problem 5 (Equal dimensions as all cards) */}
-              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-neutral-700 mb-4 shrink-0">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1 min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-neutral-700 mb-4 shrink-0 transition-transform duration-200 group-hover:scale-105">
                   <EyeOff className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -228,7 +225,7 @@ export default function HomePage() {
 
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {/* Feature Highlight 1 */}
-              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Users className="h-6 w-6" />
                 </div>
@@ -243,7 +240,7 @@ export default function HomePage() {
               </div>
 
               {/* Feature Highlight 2 */}
-              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Sparkles className="h-6 w-6" />
                 </div>
@@ -258,7 +255,7 @@ export default function HomePage() {
               </div>
 
               {/* Feature Highlight 3 */}
-              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <BarChart3 className="h-6 w-6" />
                 </div>
@@ -272,7 +269,7 @@ export default function HomePage() {
               </div>
 
               {/* Feature Highlight 4 */}
-              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Award className="h-6 w-6" />
                 </div>
@@ -286,7 +283,7 @@ export default function HomePage() {
               </div>
 
               {/* Feature Highlight 5 */}
-              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <UserCheck className="h-6 w-6" />
                 </div>
@@ -300,7 +297,7 @@ export default function HomePage() {
               </div>
 
               {/* Feature Highlight 6 */}
-              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Bot className="h-6 w-6" />
                 </div>
@@ -329,7 +326,7 @@ export default function HomePage() {
 
             <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {/* Feature 1 */}
-              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
+              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all duration-200 ease-out hover:shadow-strong hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
                     <Layers className="h-5 w-5" />
@@ -346,7 +343,7 @@ export default function HomePage() {
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
                     href="/features#admission-crm"
-                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
+                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700 transition-colors"
                   >
                     <span>Learn about CRM</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -355,7 +352,7 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 2 */}
-              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
+              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all duration-200 ease-out hover:shadow-strong hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
                     <Sparkles className="h-5 w-5" />
@@ -371,7 +368,7 @@ export default function HomePage() {
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
                     href="/features#content-studio"
-                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
+                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700 transition-colors"
                   >
                     <span>Explore Content Studio</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -380,7 +377,7 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 3 */}
-              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
+              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all duration-200 ease-out hover:shadow-strong hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
                     <BarChart3 className="h-5 w-5" />
@@ -396,7 +393,7 @@ export default function HomePage() {
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
                     href="/features#analytics"
-                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
+                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700 transition-colors"
                   >
                     <span>View Analytics Features</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -405,7 +402,7 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 4 */}
-              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
+              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all duration-200 ease-out hover:shadow-strong hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
                     <Award className="h-5 w-5" />
@@ -421,7 +418,7 @@ export default function HomePage() {
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
                     href="/features#success-vault"
-                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
+                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700 transition-colors"
                   >
                     <span>Discover Success Vault</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -430,7 +427,7 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 5 */}
-              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
+              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all duration-200 ease-out hover:shadow-strong hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
                     <Users className="h-5 w-5" />
@@ -446,7 +443,7 @@ export default function HomePage() {
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
                     href="/features#team"
-                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
+                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700 transition-colors"
                   >
                     <span>Explore Team Controls</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -455,7 +452,7 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 6 */}
-              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
+              <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all duration-200 ease-out hover:shadow-strong hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
                     <Bot className="h-5 w-5" />
@@ -471,7 +468,7 @@ export default function HomePage() {
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
                     href="/features#ai-assistant"
-                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
+                    className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700 transition-colors"
                   >
                     <span>Meet the AI Assistant</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -483,7 +480,7 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 6. CONNECTED WORKFLOW PIPELINE (ATTRACT -> CAPTURE -> CONNECT -> CONVERT -> GROW) */}
+        {/* 6. CONNECTED WORKFLOW PIPELINE (WITHOUT SMALL ICONS/SVGS AS REQUESTED)    */}
         {/* ========================================================================= */}
         <section className="bg-background py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -496,124 +493,134 @@ export default function HomePage() {
             {/* Connected horizontal workflow container */}
             <div className="relative mt-14">
               {/* Connecting animated/dashed line on desktop */}
-              <div className="hidden lg:block absolute top-7 left-12 right-12 h-0.5 border-t-2 border-dashed border-brand-300/80 z-0" />
+              <div className="hidden lg:block absolute top-10 left-12 right-12 h-0.5 border-t-2 border-dashed border-brand-300/80 z-0" />
 
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 relative z-10">
                 {/* Stage 1: Attract */}
-                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
-                      1
+                <div className="group relative flex flex-col justify-between rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-white font-heading font-extrabold text-base shadow-soft transition-transform duration-200 group-hover:scale-105">
+                        01
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200/60">
+                        Step 1
+                      </span>
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
-                      <Megaphone className="h-4 w-4" />
-                    </div>
+                    <h4 className="font-heading text-lg font-bold text-text-primary">
+                      Attract
+                    </h4>
+                    <p className="mt-2.5 text-xs sm:text-sm text-text-secondary leading-relaxed">
+                      Launch targeted campaigns with AI-crafted marketing copy for JEE,
+                      NEET, CET, or board exam batches.
+                    </p>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
-                    Stage 1
-                  </span>
-                  <h4 className="font-heading text-base font-bold text-text-primary">
-                    Attract Students
-                  </h4>
-                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                    Launch targeted campaigns with AI-crafted marketing copy for JEE,
-                    NEET, CET, or board exam batches.
-                  </p>
+                  <div className="mt-6 pt-3 border-t border-border-subtle/70 text-[11px] font-semibold text-brand-800">
+                    Lead Generation
+                  </div>
                 </div>
 
                 {/* Stage 2: Capture */}
-                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
-                      2
+                <div className="group relative flex flex-col justify-between rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-white font-heading font-extrabold text-base shadow-soft transition-transform duration-200 group-hover:scale-105">
+                        02
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200/60">
+                        Step 2
+                      </span>
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
-                      <Layers className="h-4 w-4" />
-                    </div>
+                    <h4 className="font-heading text-lg font-bold text-text-primary">
+                      Capture
+                    </h4>
+                    <p className="mt-2.5 text-xs sm:text-sm text-text-secondary leading-relaxed">
+                      Gather leads automatically from walk-ins, digital ads, and web
+                      forms into one central admission register.
+                    </p>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
-                    Stage 2
-                  </span>
-                  <h4 className="font-heading text-base font-bold text-text-primary">
-                    Capture Inquiries
-                  </h4>
-                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                    Gather leads automatically from walk-ins, digital ads, and web
-                    forms into one central admission register.
-                  </p>
+                  <div className="mt-6 pt-3 border-t border-border-subtle/70 text-[11px] font-semibold text-brand-800">
+                    Unified CRM Ingestion
+                  </div>
                 </div>
 
                 {/* Stage 3: Connect */}
-                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
-                      3
+                <div className="group relative flex flex-col justify-between rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-white font-heading font-extrabold text-base shadow-soft transition-transform duration-200 group-hover:scale-105">
+                        03
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200/60">
+                        Step 3
+                      </span>
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
-                      <MessageSquare className="h-4 w-4" />
-                    </div>
+                    <h4 className="font-heading text-lg font-bold text-text-primary">
+                      Connect
+                    </h4>
+                    <p className="mt-2.5 text-xs sm:text-sm text-text-secondary leading-relaxed">
+                      Assign leads to counsellors, track conversation notes, and trigger
+                      scheduled WhatsApp/call reminders.
+                    </p>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
-                    Stage 3
-                  </span>
-                  <h4 className="font-heading text-base font-bold text-text-primary">
-                    Connect & Follow Up
-                  </h4>
-                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                    Assign leads to counsellors, track conversation notes, and trigger
-                    scheduled WhatsApp/call reminders.
-                  </p>
+                  <div className="mt-6 pt-3 border-t border-border-subtle/70 text-[11px] font-semibold text-brand-800">
+                    Counsellor Follow-ups
+                  </div>
                 </div>
 
                 {/* Stage 4: Convert */}
-                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
-                      4
+                <div className="group relative flex flex-col justify-between rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-white font-heading font-extrabold text-base shadow-soft transition-transform duration-200 group-hover:scale-105">
+                        04
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200/60">
+                        Step 4
+                      </span>
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
-                      <GraduationCap className="h-4 w-4" />
-                    </div>
+                    <h4 className="font-heading text-lg font-bold text-text-primary">
+                      Convert
+                    </h4>
+                    <p className="mt-2.5 text-xs sm:text-sm text-text-secondary leading-relaxed">
+                      Conduct counselling sessions, record scholarship tests, and move
+                      students to confirmed admission.
+                    </p>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
-                    Stage 4
-                  </span>
-                  <h4 className="font-heading text-base font-bold text-text-primary">
-                    Convert & Enroll
-                  </h4>
-                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                    Conduct counselling sessions, record scholarship tests, and move
-                    students to confirmed admission.
-                  </p>
+                  <div className="mt-6 pt-3 border-t border-border-subtle/70 text-[11px] font-semibold text-brand-800">
+                    Admission Confirmation
+                  </div>
                 </div>
 
                 {/* Stage 5: Grow */}
-                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
-                      5
+                <div className="group relative flex flex-col justify-between rounded-2xl border border-border-subtle bg-white p-6 shadow-medium transition-all duration-200 ease-out hover:border-brand-300 hover:shadow-strong hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-white font-heading font-extrabold text-base shadow-soft transition-transform duration-200 group-hover:scale-105">
+                        05
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full border border-brand-200/60">
+                        Step 5
+                      </span>
                     </div>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
-                      <BarChart3 className="h-4 w-4" />
-                    </div>
+                    <h4 className="font-heading text-lg font-bold text-text-primary">
+                      Grow
+                    </h4>
+                    <p className="mt-2.5 text-xs sm:text-sm text-text-secondary leading-relaxed">
+                      Analyze cost per admission, identify high-performing counsellors,
+                      and optimize your marketing budget.
+                    </p>
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
-                    Stage 5
-                  </span>
-                  <h4 className="font-heading text-base font-bold text-text-primary">
-                    Measure & Grow
-                  </h4>
-                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                    Analyze cost per admission, identify high-performing counsellors,
-                    and optimize your marketing budget.
-                  </p>
+                  <div className="mt-6 pt-3 border-t border-border-subtle/70 text-[11px] font-semibold text-brand-800">
+                    Data-Driven Scale
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="mt-10 text-center">
               <Link href="/how-it-works">
-                <Button variant="outline" className="border-border-subtle shadow-soft hover:bg-neutral-50">
+                <Button variant="outline" className="border-border-subtle shadow-soft hover:bg-neutral-50 hover:border-brand-300">
                   <span>Explore the Complete Growth Journey</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -634,7 +641,7 @@ export default function HomePage() {
             />
 
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface">
+              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface shadow-soft hover:shadow-medium hover:border-brand-300 transition-all duration-200">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-900 shrink-0">
                   <Check className="h-5 w-5" />
                 </div>
@@ -649,7 +656,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface">
+              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface shadow-soft hover:shadow-medium hover:border-brand-300 transition-all duration-200">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-900 shrink-0">
                   <Check className="h-5 w-5" />
                 </div>
@@ -664,7 +671,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface">
+              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface shadow-soft hover:shadow-medium hover:border-brand-300 transition-all duration-200">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-900 shrink-0">
                   <Check className="h-5 w-5" />
                 </div>
@@ -679,7 +686,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface">
+              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface shadow-soft hover:shadow-medium hover:border-brand-300 transition-all duration-200">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-900 shrink-0">
                   <Check className="h-5 w-5" />
                 </div>
@@ -694,7 +701,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface">
+              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface shadow-soft hover:shadow-medium hover:border-brand-300 transition-all duration-200">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-900 shrink-0">
                   <Check className="h-5 w-5" />
                 </div>
@@ -709,7 +716,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface">
+              <div className="flex items-start gap-4 rounded-xl border border-border-subtle p-5 bg-surface shadow-soft hover:shadow-medium hover:border-brand-300 transition-all duration-200">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-900 shrink-0">
                   <Check className="h-5 w-5" />
                 </div>
@@ -805,7 +812,7 @@ export default function HomePage() {
 
                 <div className="mt-8">
                   <Link href="/features#content-studio">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft hover:shadow-medium hover:-translate-y-0.5 transition-all duration-200">
                       <span>Explore AI Capabilities</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -815,7 +822,7 @@ export default function HomePage() {
 
               {/* Integrated AI Assistant Animated GIF */}
               <div className="flex w-full items-center justify-center">
-                <div className="relative flex aspect-square w-full max-w-[460px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                <div className="relative flex aspect-square w-full max-w-[460px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all duration-300 hover:shadow-strong hover:border-brand-300 hover:-translate-y-1">
                   <img
                     src="/assets/images/AI%20Marketing%20&%20Admissions%20Assistant%20Animation.gif"
                     alt="AI Marketing & Admissions Assistant Animated Visual"

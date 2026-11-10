@@ -44,7 +44,7 @@ export default function SolutionsPage() {
 
             <h1 className="font-heading text-3xl font-extrabold tracking-tight text-text-primary sm:text-5xl lg:text-6xl leading-[1.15]">
               Tailored for Every Type of{' '}
-              <span className="text-brand-900 underline decoration-brand-400 decoration-wavy decoration-from-font underline-offset-8">
+              <span className="text-brand-900">
                 Coaching Academy
               </span>
             </h1>

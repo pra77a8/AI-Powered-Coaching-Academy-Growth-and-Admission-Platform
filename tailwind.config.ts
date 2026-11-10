@@ -51,8 +51,10 @@ const config: Config = {
         panel: '20px',
       },
       boxShadow: {
-        soft: '0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.02)',
-        elevation: '0 4px 14px rgba(7, 59, 54, 0.08)',
+        soft: '0 2px 8px rgba(23, 37, 34, 0.05), 0 1px 3px rgba(23, 37, 34, 0.03)',
+        medium: '0 8px 24px rgba(23, 37, 34, 0.07), 0 2px 6px rgba(23, 37, 34, 0.04)',
+        strong: '0 16px 40px rgba(11, 79, 73, 0.10), 0 4px 12px rgba(23, 37, 34, 0.05)',
+        elevation: '0 10px 30px rgba(7, 59, 54, 0.10), 0 2px 8px rgba(23, 37, 34, 0.04)',
       },
     },
   },
@@ -60,4 +62,3 @@ const config: Config = {
 };
 
 export default config;
-

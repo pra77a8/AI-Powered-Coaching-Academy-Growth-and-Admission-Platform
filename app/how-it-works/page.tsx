@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
 
             <h1 className="font-heading text-3xl font-extrabold tracking-tight text-text-primary sm:text-5xl lg:text-6xl leading-[1.15]">
               From First Inquiry to{' '}
-              <span className="text-brand-900 underline decoration-brand-400 decoration-wavy decoration-from-font underline-offset-8">
+              <span className="text-brand-900">
                 Successful Admission
               </span>
             </h1>

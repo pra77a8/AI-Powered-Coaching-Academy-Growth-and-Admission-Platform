@@ -3,22 +3,22 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none active:scale-[0.99] touch-manipulation',
+  'inline-flex items-center justify-center font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none active:scale-[0.98] touch-manipulation',
   {
     variants: {
       variant: {
         default:
-          'bg-brand-900 text-white hover:bg-brand-800 shadow-soft',
+          'bg-brand-900 text-white hover:bg-brand-800 hover:-translate-y-0.5 shadow-soft hover:shadow-medium active:translate-y-0',
         primary:
-          'bg-brand-700 text-white hover:bg-brand-800 shadow-soft',
+          'bg-brand-700 text-white hover:bg-brand-800 hover:-translate-y-0.5 shadow-soft hover:shadow-medium active:translate-y-0',
         secondary:
-          'bg-brand-50 text-brand-900 hover:bg-brand-100 border border-brand-100',
+          'bg-brand-50 text-brand-900 hover:bg-brand-100 hover:border-brand-200 border border-brand-100',
         outline:
-          'border border-border-subtle bg-white hover:bg-surface-muted text-text-primary',
+          'border border-border-subtle bg-white hover:bg-neutral-50 hover:border-brand-300 hover:text-brand-900 hover:-translate-y-0.5 shadow-soft hover:shadow-medium text-text-primary active:translate-y-0',
         ghost:
-          'hover:bg-surface-muted text-text-primary hover:text-brand-900',
+          'hover:bg-brand-50 hover:text-brand-900 text-text-primary',
         destructive:
-          'bg-semantic-danger text-white hover:bg-red-700 shadow-soft',
+          'bg-semantic-danger text-white hover:bg-red-700 hover:-translate-y-0.5 shadow-soft hover:shadow-medium active:translate-y-0',
         link:
           'text-brand-700 underline-offset-4 hover:underline p-0 h-auto',
       },
@@ -56,4 +56,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export { Button, buttonVariants };
-

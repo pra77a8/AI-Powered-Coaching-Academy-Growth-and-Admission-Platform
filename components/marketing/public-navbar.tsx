@@ -45,7 +45,7 @@ export function PublicNavbar() {
         {/* Brand Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded-lg"
+          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded-lg p-1 -ml-1 transition-transform hover:scale-[1.02]"
           aria-label="AcademyGrowth Homepage"
         >
           <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-xl bg-brand-900/5 p-1 transition-transform group-hover:scale-105">
@@ -79,10 +79,10 @@ export function PublicNavbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 ${
                   active
-                    ? 'bg-brand-50 text-brand-900 font-semibold'
-                    : 'text-text-secondary hover:bg-neutral-100 hover:text-text-primary'
+                    ? 'bg-brand-50 text-brand-900 font-semibold shadow-xs'
+                    : 'text-text-secondary hover:bg-brand-50/80 hover:text-brand-900 hover:-translate-y-0.5'
                 }`}
               >
                 {item.label}
@@ -97,7 +97,7 @@ export function PublicNavbar() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-text-secondary hover:text-text-primary font-medium"
+              className="text-text-secondary hover:text-brand-900 hover:bg-brand-50 font-medium transition-all duration-200"
             >
               Sign In
             </Button>
@@ -105,7 +105,7 @@ export function PublicNavbar() {
           <Link href="/signup">
             <Button
               size="sm"
-              className="bg-brand-900 text-white hover:bg-brand-800 font-semibold shadow-soft"
+              className="bg-brand-900 text-white hover:bg-brand-800 font-semibold shadow-soft hover:shadow-medium hover:-translate-y-0.5 transition-all duration-200"
             >
               <Sparkles className="mr-1.5 h-3.5 w-3.5 text-brand-300" />
               <span>Start Free Trial</span>
@@ -127,7 +127,7 @@ export function PublicNavbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-text-secondary hover:bg-neutral-100 hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-700"
+            className="inline-flex items-center justify-center rounded-lg p-2 text-text-secondary hover:bg-brand-50 hover:text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-700 transition-colors"
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -154,7 +154,7 @@ export function PublicNavbar() {
                   className={`rounded-lg px-3 py-2.5 text-base font-medium transition-colors ${
                     active
                       ? 'bg-brand-50 text-brand-900 font-semibold'
-                      : 'text-text-secondary hover:bg-neutral-50 hover:text-text-primary'
+                      : 'text-text-secondary hover:bg-brand-50 hover:text-brand-900'
                   }`}
                 >
                   {item.label}
@@ -171,7 +171,7 @@ export function PublicNavbar() {
             >
               <Button
                 variant="outline"
-                className="w-full justify-center border-border-subtle text-text-primary font-medium"
+                className="w-full justify-center border-border-subtle text-text-primary font-medium hover:bg-brand-50 hover:text-brand-900"
               >
                 Sign In
               </Button>
