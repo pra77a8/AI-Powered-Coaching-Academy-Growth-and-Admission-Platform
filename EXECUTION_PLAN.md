@@ -1224,8 +1224,8 @@ Epic -> Feature -> Development Task [TSK-XXX] -> Acceptance Criteria
     - *Dependencies:* `TSK-FND-002` | *Output:* SQL migration scripts (`supabase/migrations/20261110000001_phase1_initial_schema.sql`).
     - *Acceptance:* Tables instantiate with all foreign keys, unique slugs, branch hierarchy self-reference, composite uniqueness, and atomic RPC functions; validated with TypeScript build. [Completed Locally]
   - `TSK-DB-002` [Critical]: Implement and verify PostgreSQL Row Level Security (RLS) tenant isolation policies.
-    - *Dependencies:* `TSK-DB-001` | *Output:* RLS policies.
-    - *Acceptance:* Integration test confirms User A from Institute 1 receives 0 rows when querying Institute 2 data.
+    - *Dependencies:* `TSK-DB-001` | *Output:* RLS policies (`supabase/migrations/20261110000002_phase1_rls_policies.sql`).
+    - *Acceptance:* Integration test confirms User A from Institute 1 receives 0 rows when querying Institute 2 data; suspended users have 0 access; role boundaries enforced. [Completed Locally]
 - **Feature 1.3: User Authentication & Onboarding**
   - `TSK-AUTH-001` [High]: Build Email/Password Sign Up & Login views with validation.
     - *Dependencies:* `TSK-DB-002` | *Output:* UI and Auth actions.
