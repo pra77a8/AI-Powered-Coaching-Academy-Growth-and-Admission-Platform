@@ -18,3 +18,4 @@ export function formatDate(date: string | Date): string {
     dateStyle: 'medium',
   }).format(typeof date === 'string' ? new Date(date) : date);
 }
+

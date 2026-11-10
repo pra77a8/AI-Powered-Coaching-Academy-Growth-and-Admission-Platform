@@ -21,8 +21,10 @@ pnpm-debug.log*
 # OS and IDE files
 .DS_Store
 *.pem
+*.tsbuildinfo
 .vscode/
 .idea/
 
 # Internal / Scratch
 .system_generated/
+
