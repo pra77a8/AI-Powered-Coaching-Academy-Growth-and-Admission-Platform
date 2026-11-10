@@ -1,10 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
-  GraduationCap,
   ShieldCheck,
-  Sparkles,
-  ArrowRight,
   Mail,
   MapPin,
 } from 'lucide-react';
@@ -18,17 +16,24 @@ export function PublicFooter() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded-lg"
+              className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded-lg group"
+              aria-label="AcademyGrowth Homepage"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-900 text-white shadow-soft">
-                <GraduationCap className="h-5 w-5 text-brand-300" />
+              <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-xl bg-brand-900/5 p-1">
+                <Image
+                  src="/assets/images/logo-academicgrowth-tight.png"
+                  alt="AcademyGrowth Logo"
+                  width={40}
+                  height={40}
+                  className="h-full w-full object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-heading text-lg font-bold tracking-tight text-text-primary leading-tight">
                   AcademyGrowth
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-700">
-                  Coaching Platform
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-700">
+                  Coaching Growth Platform
                 </span>
               </div>
             </Link>
@@ -39,7 +44,7 @@ export function PublicFooter() {
               academies, and educational founders.
             </p>
 
-            <div className="mt-6 flex items-center gap-2 text-xs font-medium text-brand-800 bg-brand-50 border border-brand-200/70 rounded-lg px-3 py-2 w-fit">
+            <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-brand-900 bg-brand-50 border border-brand-200/80 rounded-lg px-3 py-2 w-fit">
               <ShieldCheck className="h-4 w-4 text-brand-700 flex-shrink-0" />
               <span>14-Day Free Trial • No Credit Card Required</span>
             </div>
@@ -86,7 +91,7 @@ export function PublicFooter() {
             </ul>
           </div>
 
-          {/* Company & Resources Links */}
+          {/* Company Links */}
           <div>
             <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-text-primary">
               Company
@@ -98,14 +103,6 @@ export function PublicFooter() {
                   className="text-text-secondary transition-colors hover:text-brand-900"
                 >
                   About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/resources"
-                  className="text-text-secondary transition-colors hover:text-brand-900"
-                >
-                  Resource Hub
                 </Link>
               </li>
               <li>
@@ -127,7 +124,7 @@ export function PublicFooter() {
             </ul>
           </div>
 
-          {/* Legal & Compliance Links */}
+          {/* Legal & Policy Links */}
           <div>
             <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-text-primary">
               Legal & Policy
@@ -146,7 +143,7 @@ export function PublicFooter() {
                   href="/terms"
                   className="text-text-secondary transition-colors hover:text-brand-900"
                 >
-                  Terms and Conditions
+                  Terms of Service
                 </Link>
               </li>
               <li>
@@ -154,31 +151,31 @@ export function PublicFooter() {
                   href="/refund-policy"
                   className="text-text-secondary transition-colors hover:text-brand-900"
                 >
-                  Refund & Cancellation Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/login"
-                  className="text-text-secondary transition-colors hover:text-brand-900"
-                >
-                  Staff Sign In
+                  Refund & Cancellation
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 flex flex-col items-center justify-between border-t border-border-subtle pt-8 text-xs text-text-secondary sm:flex-row gap-4">
-          <p>© 2026 AcademyGrowth Platform. All rights reserved.</p>
-          <p className="text-center sm:text-right">
-            Engineered for high-performing coaching academies, competitive exam
-            centers, and admission teams.
+        {/* Bottom Sub-footer */}
+        <div className="mt-12 flex flex-col items-center justify-between border-t border-border-subtle pt-8 sm:flex-row gap-4">
+          <p className="text-xs text-text-muted">
+            &copy; {new Date().getFullYear()} AcademyGrowth. Built for Indian Coaching Academies. All rights reserved.
           </p>
+
+          <div className="flex items-center gap-6 text-xs text-text-muted">
+            <span className="flex items-center gap-1">
+              <MapPin className="h-3.5 w-3.5 text-brand-700" />
+              Made for Pune, Kota, Hyderabad & Pan-India Institutes
+            </span>
+            <span className="flex items-center gap-1">
+              <Mail className="h-3.5 w-3.5 text-brand-700" />
+              support@academygrowth.in
+            </span>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-

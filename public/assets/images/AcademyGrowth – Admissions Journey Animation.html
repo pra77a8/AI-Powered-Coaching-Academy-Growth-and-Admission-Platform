@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AcademyGrowth – Admissions Journey</title>
+<style>
+  :root {
+    --teal: #0B514B;
+    --emerald: #119B83;
+    --mint: #DDF4EC;
+    --white: #FFFFFF;
+    --navy: #152B32;
+    --grey: #F3F7F6;
+    --grey2: #E2EDEA;
+    --shadow: 0 4px 24px rgba(11,81,75,0.10);
+    --shadow-sm: 0 2px 10px rgba(11,81,75,0.08);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal: #0B514B;
+      --emerald: #119B83;
+      --mint: #DDF4EC;
+      --white: #FFFFFF;
+      --navy: #152B32;
+      --grey: #F3F7F6;
+      --grey2: #E2EDEA;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--white);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .stage-wrap {
+    width: 100%;
+    max-width: 900px;
+    background: var(--white);
+  }
+
+  /* ── Canvas ── */
+  .canvas {
+    width: 100%;
+    aspect-ratio: 16/7;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    box-shadow: var(--shadow);
+  }
+
+  /* ── Scenes ── */
+  .scene {
+    position: absolute;
+    inset: 0;
+    padding: 28px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+  }
+  .scene.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Scene labels */
+  .scene-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .scene-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--emerald);
+    background: var(--mint);
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+  .scene-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: -0.3px;
+  }
+  .scene-sub {
+    font-size: 11.5px;
+    color: #6B8A86;
+    margin-top: 2px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: var(--shadow-sm);
+    font-size: 11px;
+    color: var(--navy);
+    position: relative;
+  }
+  .card-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .card-sm {
+    padding: 8px 12px;
+    font-size: 10.5px;
+    border-radius: 10px;
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .card-meta {
+    font-size: 10px;
+    color: #8AA4A0;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  .dot-green { background: var(--emerald); }
+  .dot-amber { background: #F59E0B; }
+  .dot-red   { background: #EF4444; }
+
+  /* Pill badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .badge-green { background: var(--mint); color: var(--teal); }
+  .badge-amber { background: #FEF3C7; color: #92400E; }
+
+  /* ══════════════════════════════
+     SCENE 1 – ATTRACT
+  ══════════════════════════════ */
+  #s1 .content { display: flex; gap: 14px; align-items: flex-start; }
+  #s1 .dashboard {
+    flex: 0 0 220px;
+    background: var(--grey);
+    border-radius: 14px;
+    padding: 14px;
+    border: 1.5px solid var(--grey2);
+  }
+  #s1 .dash-title {
+    font-size: 10px; font-weight: 700; color: var(--teal);
+    margin-bottom: 10px; letter-spacing: 0.5px;
+  }
+  #s1 .campaign-cards { display: flex; flex-direction: column; gap: 7px; }
+  .c-card {
+    background: var(--white);
+    border-radius: 9px;
+    padding: 7px 10px;
+    border: 1.5px solid var(--grey2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s1.active .c-card:nth-child(1) { transform: translateX(0); opacity: 1; transition-delay: 0.2s; }
+  #s1.active .c-card:nth-child(2) { transform: translateX(0); opacity: 1; transition-delay: 0.45s; }
+  #s1.active .c-card:nth-child(3) { transform: translateX(0); opacity: 1; transition-delay: 0.7s; }
+  .c-card .icon { font-size: 14px; }
+  .c-card .label { font-weight: 600; color: var(--navy); }
+  .c-card .stat  { margin-left: auto; font-size: 9.5px; color: var(--emerald); font-weight: 700; }
+
+  #s1 .right-col { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .launch-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--teal); color: var(--white);
+    border-radius: 10px; padding: 9px 14px;
+    font-size: 11px; font-weight: 600;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s1.active .launch-pill { transform: translateY(0); opacity: 1; transition-delay: 0.9s; }
+  .launch-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4ADE80;
+    animation: pulse 1.5s infinite;
+  }
+  .audience-row {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  #s1.active .audience-row { opacity: 1; transition-delay: 1.1s; }
+  .aud-chip {
+    background: var(--mint);
+    color: var(--teal);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 9.5px;
+    font-weight: 600;
+  }
+  .ai-card {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--emerald) 100%);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 10px;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s1.active .ai-card { transform: translateY(0); opacity: 1; transition-delay: 1.3s; }
+  .ai-card .ai-label { font-size: 9px; opacity: 0.7; margin-bottom: 2px; letter-spacing: 0.5px; }
+  .ai-card .ai-text  { font-weight: 600; }
+
+  /* ══════════════════════════════
+     SCENE 2 – CAPTURE
+  ══════════════════════════════ */
+  #s2 .content { display: flex; gap: 0; align-items: center; }
+  .sources {
+    display: flex; flex-direction: column; gap: 8px;
+    flex: 0 0 160px;
+  }
+  .src-card {
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex; align-items: center; gap: 7px;
+    transform: translateX(-30px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s2.active .src-card:nth-child(1) { transform: translateX(0); opacity: 1; transition-delay: 0.1s; }
+  #s2.active .src-card:nth-child(2) { transform: translateX(0); opacity: 1; transition-delay: 0.3s; }
+  #s2.active .src-card:nth-child(3) { transform: translateX(0); opacity: 1; transition-delay: 0.5s; }
+  #s2.active .src-card:nth-child(4) { transform: translateX(0); opacity: 1; transition-delay: 0.7s; }
+
+  .arrow-flow {
+    flex: 0 0 60px;
+    display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center;
+  }
+  .flow-line {
+    width: 40px; height: 2px; background: var(--grey2);
+    position: relative; overflow: visible;
+  }
+  .flow-line::after {
+    content: '';
+    position: absolute;
+    left: 0; top: -1px;
+    height: 4px;
+    background: var(--emerald);
+    border-radius: 2px;
+    width: 0;
+    transition: width 1s ease;
+  }
+  #s2.active .flow-line::after { width: 100%; }
+
+  .crm-box {
+    flex: 1;
+    background: var(--grey);
+    border: 1.5px solid var(--grey2);
+    border-radius: 14px;
+    padding: 14px;
+    transform: scale(0.95); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s2.active .crm-box { transform: scale(1); opacity: 1; transition-delay: 0.5s; }
+  .crm-title { font-size: 10px; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
+  .lead-row {
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .lead-item {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 10px;
+    display: flex; align-items: center; gap: 7px;
+    border: 1.5px solid var(--grey2);
+    transform: translateY(8px); opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  #s2.active .lead-item:nth-child(1) { transform: translateY(0); opacity: 1; transition-delay: 0.9s; }
+  #s2.active .lead-item:nth-child(2) { transform: translateY(0); opacity: 1; transition-delay: 1.1s; }
+  #s2.active .lead-item:nth-child(3) { transform: translateY(0); opacity: 1; transition-delay: 1.3s; }
+  .notif-toast {
+    position: absolute;
+    top: 18px; right: 20px;
+    background: var(--teal); color: var(--white);
+    border-radius: 8px; padding: 6px 12px;
+    font-size: 10px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+    transform: translateY(-10px); opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    white-space: nowrap;
+  }
+  #s2.active .notif-toast { transform: translateY(0); opacity: 1; transition-delay: 1.5s; }
+
+  /* ══════════════════════════════
+     SCENE 3 – CONNECT
+  ══════════════════════════════ */
+  #s3 .content { display: flex; gap: 14px; }
+  .counsellor-card {
+    flex: 0 0 170px;
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    transform: translateX(-20px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s3.active .counsellor-card { transform: translateX(0); opacity: 1; transition-delay: 0.2s; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--emerald));
+    margin: 0 auto 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: white;
+  }
+  .c-name { font-size: 11.5px; font-weight: 700; color: var(--navy); }
+  .c-role  { font-size: 10px; color: #8AA4A0; margin-bottom: 8px; }
+  .c-stat-row { display: flex; justify-content: center; gap: 10px; }
+  .c-stat { text-align: center; }
+  .c-stat .n { font-size: 13px; font-weight: 700; color: var(--teal); }
+  .c-stat .l { font-size: 9px; color: #8AA4A0; }
+
+  .connect-mid { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .inquiry-assign {
+    background: var(--mint);
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 10.5px;
+    display: flex; align-items: center; gap: 8px;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s3.active .inquiry-assign { transform: translateY(0); opacity: 1; transition-delay: 0.5s; }
+  .notif-bell {
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 10px;
+    display: flex; align-items: center; gap: 7px;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s3.active .notif-bell { transform: translateY(0); opacity: 1; transition-delay: 0.7s; }
+  .note-panel {
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 10px;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s3.active .note-panel { transform: translateY(0); opacity: 1; transition-delay: 0.9s; }
+  .response-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--mint); color: var(--teal);
+    border-radius: 20px; padding: 4px 10px; font-size: 9.5px; font-weight: 700;
+    transform: translateY(8px); opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  #s3.active .response-pill { transform: translateY(0); opacity: 1; transition-delay: 1.1s; }
+
+  .calendar-card {
+    flex: 0 0 130px;
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 14px;
+    padding: 12px;
+    transform: translateX(20px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s3.active .calendar-card { transform: translateX(0); opacity: 1; transition-delay: 0.6s; }
+  .cal-header { font-size: 10px; font-weight: 700; color: var(--teal); margin-bottom: 7px; }
+  .cal-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
+  .cal-cell {
+    width: 20px; height: 20px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #8AA4A0;
+    background: var(--grey);
+  }
+  .cal-cell.today { background: var(--teal); color: white; font-weight: 700; }
+  .cal-cell.event { background: var(--mint); color: var(--teal); font-weight: 600; }
+  .reminder {
+    margin-top: 8px;
+    background: #FEF3C7;
+    border-radius: 7px;
+    padding: 5px 7px;
+    font-size: 9.5px;
+    color: #92400E;
+    transform: scale(0); opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  #s3.active .reminder { transform: scale(1); opacity: 1; transition-delay: 1.0s; }
+
+  /* ══════════════════════════════
+     SCENE 4 – CONVERT (Kanban)
+  ══════════════════════════════ */
+  #s4 .content { display: flex; gap: 10px; }
+  .kanban-col {
+    flex: 1;
+    background: var(--grey);
+    border: 1.5px solid var(--grey2);
+    border-radius: 12px;
+    padding: 10px;
+    transform: translateY(20px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s4.active .kanban-col:nth-child(1) { transform: translateY(0); opacity: 1; transition-delay: 0.1s; }
+  #s4.active .kanban-col:nth-child(2) { transform: translateY(0); opacity: 1; transition-delay: 0.25s; }
+  #s4.active .kanban-col:nth-child(3) { transform: translateY(0); opacity: 1; transition-delay: 0.4s; }
+  #s4.active .kanban-col:nth-child(4) { transform: translateY(0); opacity: 1; transition-delay: 0.55s; }
+  .kanban-col.confirmed { background: var(--mint); border-color: #A7DDD0; }
+  .col-label {
+    font-size: 9.5px; font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .col-count {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1px 6px;
+    font-size: 9px;
+    color: var(--navy);
+    border: 1px solid var(--grey2);
+  }
+
+  .k-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 7px 9px;
+    font-size: 9.5px;
+    border: 1.5px solid var(--grey2);
+    margin-bottom: 5px;
+    transform: translateY(8px); opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  #s4.active .k-card { transform: translateY(0); opacity: 1; }
+  #s4.active .kanban-col:nth-child(1) .k-card { transition-delay: 0.5s; }
+  #s4.active .kanban-col:nth-child(2) .k-card { transition-delay: 0.7s; }
+  #s4.active .kanban-col:nth-child(3) .k-card { transition-delay: 0.9s; }
+  #s4.active .kanban-col:nth-child(4) .k-card { transition-delay: 1.1s; }
+  .k-card-name { font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+  .k-card-meta { color: #8AA4A0; font-size: 9px; }
+
+  .success-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 9.5px;
+    border: 1.5px solid #A7DDD0;
+    display: flex; flex-direction: column; gap: 4px;
+    transform: translateY(8px) scale(0.95); opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.5s ease;
+  }
+  #s4.active .success-card { transform: translateY(0) scale(1); opacity: 1; transition-delay: 1.3s; }
+  .check-icon { color: var(--emerald); font-size: 14px; }
+
+  /* ══════════════════════════════
+     SCENE 5 – GROW
+  ══════════════════════════════ */
+  #s5 .content { display: flex; gap: 12px; }
+  .metrics-col { flex: 0 0 160px; display: flex; flex-direction: column; gap: 8px; }
+  .metric-card {
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 10px;
+    padding: 10px 12px;
+    transform: translateX(-20px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s5.active .metric-card:nth-child(1) { transform: translateX(0); opacity: 1; transition-delay: 0.1s; }
+  #s5.active .metric-card:nth-child(2) { transform: translateX(0); opacity: 1; transition-delay: 0.3s; }
+  #s5.active .metric-card:nth-child(3) { transform: translateX(0); opacity: 1; transition-delay: 0.5s; }
+  .metric-label { font-size: 9.5px; color: #8AA4A0; margin-bottom: 4px; }
+  .metric-value {
+    font-size: 20px; font-weight: 800; color: var(--teal);
+    font-variant-numeric: tabular-nums;
+  }
+  .metric-delta { font-size: 9.5px; color: var(--emerald); font-weight: 600; margin-top: 2px; }
+
+  .chart-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .chart-box {
+    background: var(--white);
+    border: 1.5px solid var(--grey2);
+    border-radius: 12px;
+    padding: 12px;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s5.active .chart-box { transform: translateY(0); opacity: 1; transition-delay: 0.4s; }
+  .chart-title { font-size: 10px; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
+  .bar-row { display: flex; align-items: flex-end; gap: 6px; height: 60px; }
+  .bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    background: linear-gradient(to top, var(--teal), var(--emerald));
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 0.6s cubic-bezier(0.34,1.1,0.64,1);
+  }
+  #s5.active .bar { transform: scaleY(1); }
+  #s5.active .bar:nth-child(1) { transition-delay: 0.5s; height: 40%; }
+  #s5.active .bar:nth-child(2) { transition-delay: 0.6s; height: 55%; }
+  #s5.active .bar:nth-child(3) { transition-delay: 0.7s; height: 48%; }
+  #s5.active .bar:nth-child(4) { transition-delay: 0.8s; height: 72%; }
+  #s5.active .bar:nth-child(5) { transition-delay: 0.9s; height: 65%; }
+  #s5.active .bar:nth-child(6) { transition-delay: 1.0s; height: 85%; }
+  #s5.active .bar:nth-child(7) { transition-delay: 1.1s; height: 95%; }
+
+  .ai-rec {
+    background: linear-gradient(135deg, var(--teal), var(--emerald));
+    color: white;
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 9.5px;
+    transform: translateY(10px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s5.active .ai-rec { transform: translateY(0); opacity: 1; transition-delay: 1.2s; }
+  .ai-rec-label { font-size: 8.5px; opacity: 0.7; margin-bottom: 2px; }
+  .ai-rec-text { font-weight: 600; line-height: 1.4; }
+
+  /* ══════════════════════════════
+     SCENE 6 – OVERVIEW
+  ══════════════════════════════ */
+  #s6 { align-items: center; justify-content: center; padding: 24px 36px; }
+  .ov-title {
+    font-size: 15px; font-weight: 800; color: var(--teal);
+    text-align: center; margin-bottom: 4px;
+    transform: translateY(-8px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s6.active .ov-title { transform: translateY(0); opacity: 1; transition-delay: 0.1s; }
+  .ov-sub {
+    font-size: 10.5px; color: #6B8A86; text-align: center; margin-bottom: 20px;
+    transform: translateY(-5px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s6.active .ov-sub { transform: translateY(0); opacity: 1; transition-delay: 0.3s; }
+  .ov-flow {
+    display: flex; align-items: center; gap: 0;
+    justify-content: center; width: 100%;
+  }
+  .ov-step {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px;
+    transform: translateY(14px); opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #s6.active .ov-step:nth-child(1) { transform: translateY(0); opacity: 1; transition-delay: 0.5s; }
+  #s6.active .ov-step:nth-child(3) { transform: translateY(0); opacity: 1; transition-delay: 0.65s; }
+  #s6.active .ov-step:nth-child(5) { transform: translateY(0); opacity: 1; transition-delay: 0.8s; }
+  #s6.active .ov-step:nth-child(7) { transform: translateY(0); opacity: 1; transition-delay: 0.95s; }
+  #s6.active .ov-step:nth-child(9) { transform: translateY(0); opacity: 1; transition-delay: 1.1s; }
+  .ov-icon-wrap {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: var(--mint);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    border: 1.5px solid var(--grey2);
+  }
+  .ov-label { font-size: 9.5px; font-weight: 700; color: var(--teal); letter-spacing: 0.3px; }
+  .ov-mini { font-size: 8.5px; color: #8AA4A0; max-width: 70px; text-align: center; line-height: 1.3; }
+  .ov-check {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--emerald); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    transform: scale(0);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  #s6.active .ov-step:nth-child(1) .ov-check { transform: scale(1); transition-delay: 0.9s; }
+  #s6.active .ov-step:nth-child(3) .ov-check { transform: scale(1); transition-delay: 1.05s; }
+  #s6.active .ov-step:nth-child(5) .ov-check { transform: scale(1); transition-delay: 1.2s; }
+  #s6.active .ov-step:nth-child(7) .ov-check { transform: scale(1); transition-delay: 1.35s; }
+  #s6.active .ov-step:nth-child(9) .ov-check { transform: scale(1); transition-delay: 1.5s; }
+
+  .ov-arrow {
+    flex: 1; display: flex; align-items: center;
+    padding-bottom: 28px;
+  }
+  .ov-arrow svg { width: 100%; }
+  .ov-arrow-line {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    transition: stroke-dashoffset 0.5s ease;
+  }
+  #s6.active .ov-arr-1 .ov-arrow-line { stroke-dashoffset: 0; transition-delay: 0.7s; }
+  #s6.active .ov-arr-2 .ov-arrow-line { stroke-dashoffset: 0; transition-delay: 0.85s; }
+  #s6.active .ov-arr-3 .ov-arrow-line { stroke-dashoffset: 0; transition-delay: 1.0s; }
+  #s6.active .ov-arr-4 .ov-arrow-line { stroke-dashoffset: 0; transition-delay: 1.15s; }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--grey2);
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    margin-top: 2px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--emerald));
+    border-radius: 2px;
+    transition: width 0.3s linear;
+    width: 0%;
+  }
+
+  /* ── Stage dots ── */
+  .stage-dots {
+    display: flex; gap: 6px; justify-content: center;
+    margin-top: 12px;
+  }
+  .s-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--grey2);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .s-dot.active { background: var(--teal); transform: scale(1.3); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .float { animation: float 3s ease-in-out infinite; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .canvas { aspect-ratio: unset; min-height: 320px; }
+    #s4 .content { gap: 5px; }
+    .kanban-col { padding: 7px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage-wrap">
+  <div class="canvas" id="canvas">
+
+    <!-- SCENE 1: ATTRACT -->
+    <div class="scene active" id="s1">
+      <div class="scene-label">
+        <span class="scene-num">01</span>
+        <span class="scene-title">ATTRACT</span>
+      </div>
+      <p class="scene-sub">Create targeted marketing campaigns</p>
+      <div class="content">
+        <div class="dashboard">
+          <div class="dash-title">CAMPAIGN MANAGER</div>
+          <div class="campaign-cards">
+            <div class="c-card">
+              <span class="icon">📱</span>
+              <span class="label">Social Media</span>
+              <span class="stat">↑ 2.4k</span>
+            </div>
+            <div class="c-card">
+              <span class="icon">🔍</span>
+              <span class="label">Google Ads</span>
+              <span class="stat">↑ 890</span>
+            </div>
+            <div class="c-card">
+              <span class="icon">💬</span>
+              <span class="label">WhatsApp</span>
+              <span class="stat">↑ 1.1k</span>
+            </div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="launch-pill">
+            <div class="launch-dot"></div>
+            Campaign Live — IIT-JEE 2025 Batch
+          </div>
+          <div class="audience-row">
+            <span class="aud-chip">Class 11–12</span>
+            <span class="aud-chip">Engineering</span>
+            <span class="aud-chip">Medical</span>
+            <span class="aud-chip">Foundation</span>
+          </div>
+          <div class="ai-card float">
+            <div class="ai-label">✦ AI CONTENT STUDIO</div>
+            <div class="ai-text">3 high-performing ad creatives generated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 2: CAPTURE -->
+    <div class="scene" id="s2">
+      <div class="scene-label">
+        <span class="scene-num">02</span>
+        <span class="scene-title">CAPTURE</span>
+      </div>
+      <p class="scene-sub">Every inquiry, in one centralized place</p>
+      <div class="content" style="position:relative;">
+        <div class="sources">
+          <div class="src-card">🌐 <span>Website Form</span></div>
+          <div class="src-card">📲 <span>Meta Lead Ad</span></div>
+          <div class="src-card">📞 <span>Phone Inquiry</span></div>
+          <div class="src-card">🏫 <span>Walk-In</span></div>
+        </div>
+        <div class="arrow-flow">
+          <div class="flow-line"></div>
+          <div class="flow-line"></div>
+          <div class="flow-line"></div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="crm-box">
+          <div class="crm-title">ADMISSION REGISTER</div>
+          <div class="lead-row">
+            <div class="lead-item">
+              <span class="dot dot-green"></span>
+              <div>
+                <div class="card-title">Priya Sharma</div>
+                <div class="card-meta">JEE · Website · Today 10:24</div>
+              </div>
+              <span class="badge badge-green" style="margin-left:auto;">New</span>
+            </div>
+            <div class="lead-item">
+              <span class="dot dot-amber"></span>
+              <div>
+                <div class="card-title">Rahul Desai</div>
+                <div class="card-meta">NEET · Meta Ad · Today 09:58</div>
+              </div>
+              <span class="badge badge-amber" style="margin-left:auto;">Follow</span>
+            </div>
+            <div class="lead-item">
+              <span class="dot dot-green"></span>
+              <div>
+                <div class="card-title">Ananya Kulkarni</div>
+                <div class="card-meta">Foundation · Walk-In · Today 11:02</div>
+              </div>
+              <span class="badge badge-green" style="margin-left:auto;">New</span>
+            </div>
+          </div>
+        </div>
+        <div class="notif-toast">🔔 New Inquiry Received</div>
+      </div>
+    </div>
+
+    <!-- SCENE 3: CONNECT -->
+    <div class="scene" id="s3">
+      <div class="scene-label">
+        <span class="scene-num">03</span>
+        <span class="scene-title">CONNECT</span>
+      </div>
+      <p class="scene-sub">Smart counsellor assignments & follow-ups</p>
+      <div class="content">
+        <div class="counsellor-card">
+          <div class="avatar">👤</div>
+          <div class="c-name">Meera Joshi</div>
+          <div class="c-role">Senior Counsellor</div>
+          <div class="c-stat-row">
+            <div class="c-stat"><div class="n">24</div><div class="l">Leads</div></div>
+            <div class="c-stat"><div class="n">78%</div><div class="l">Convert</div></div>
+          </div>
+        </div>
+        <div class="connect-mid">
+          <div class="inquiry-assign">
+            📋 <strong>Priya Sharma</strong> assigned to Meera Joshi
+          </div>
+          <div class="notif-bell">🔔 Inquiry alert — JEE inquiry pending response</div>
+          <div class="note-panel">
+            <div class="card-title" style="margin-bottom:4px;">Consultation Notes</div>
+            <div class="card-meta">Interested in JEE Advanced batch · Parent enquiry · Trial demo requested</div>
+          </div>
+          <div class="response-pill">⚡ Response within 15 minutes</div>
+        </div>
+        <div class="calendar-card">
+          <div class="cal-header">📅 November</div>
+          <div class="cal-grid">
+            <div class="cal-cell">8</div>
+            <div class="cal-cell">9</div>
+            <div class="cal-cell today">10</div>
+            <div class="cal-cell event">11</div>
+            <div class="cal-cell">12</div>
+            <div class="cal-cell">13</div>
+            <div class="cal-cell event">14</div>
+            <div class="cal-cell">15</div>
+            <div class="cal-cell">16</div>
+            <div class="cal-cell">17</div>
+          </div>
+          <div class="reminder">📌 Demo scheduled — Nov 11</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 4: CONVERT (Kanban) -->
+    <div class="scene" id="s4">
+      <div class="scene-label">
+        <span class="scene-num">04</span>
+        <span class="scene-title">CONVERT</span>
+      </div>
+      <p class="scene-sub">Turn interested students into confirmed admissions</p>
+      <div class="content">
+        <div class="kanban-col">
+          <div class="col-label">Counselling <span class="col-count">3</span></div>
+          <div class="k-card">
+            <div class="k-card-name">Priya Sharma</div>
+            <div class="k-card-meta">JEE · Day 1</div>
+          </div>
+          <div class="k-card" style="opacity:0.5;">
+            <div class="k-card-name">Arjun Patil</div>
+            <div class="k-card-meta">NEET · Day 2</div>
+          </div>
+        </div>
+        <div class="kanban-col">
+          <div class="col-label">Demo Lecture <span class="col-count">2</span></div>
+          <div class="k-card">
+            <div class="k-card-name">Rahul Desai</div>
+            <div class="k-card-meta">JEE · Scheduled</div>
+          </div>
+        </div>
+        <div class="kanban-col">
+          <div class="col-label">Scholarship Test <span class="col-count">1</span></div>
+          <div class="k-card">
+            <div class="k-card-name">Sneha More</div>
+            <div class="k-card-meta">Foundation · Score 82%</div>
+          </div>
+        </div>
+        <div class="kanban-col confirmed">
+          <div class="col-label" style="color:#0B514B;">Admitted ✓ <span class="col-count">4</span></div>
+          <div class="success-card">
+            <div class="k-card-name" style="display:flex;align-items:center;gap:5px;">
+              <span class="check-icon">✓</span> Ananya Kulkarni
+            </div>
+            <div class="k-card-meta">JEE Advanced · Seat Confirmed</div>
+            <div style="display:flex;gap:5px;margin-top:4px;">
+              <span class="badge badge-green">Fee Received</span>
+              <span class="badge badge-green">ID Issued</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 5: GROW -->
+    <div class="scene" id="s5">
+      <div class="scene-label">
+        <span class="scene-num">05</span>
+        <span class="scene-title">GROW</span>
+      </div>
+      <p class="scene-sub">Measure performance. Optimize growth.</p>
+      <div class="content">
+        <div class="metrics-col">
+          <div class="metric-card">
+            <div class="metric-label">Cost Per Inquiry</div>
+            <div class="metric-value" id="cpi">₹0</div>
+            <div class="metric-delta">↓ 18% vs last month</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Conversion Rate</div>
+            <div class="metric-value" id="cvr">0%</div>
+            <div class="metric-delta">↑ 12% improvement</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Admissions This Month</div>
+            <div class="metric-value" id="adm">0</div>
+            <div class="metric-delta">↑ Target: 60</div>
+          </div>
+        </div>
+        <div class="chart-col">
+          <div class="chart-box">
+            <div class="chart-title">Monthly Admission Pipeline</div>
+            <div class="bar-row" id="barrow">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:5px;">
+              <span style="font-size:9px;color:#8AA4A0;">May</span>
+              <span style="font-size:9px;color:#8AA4A0;">Jun</span>
+              <span style="font-size:9px;color:#8AA4A0;">Jul</span>
+              <span style="font-size:9px;color:#8AA4A0;">Aug</span>
+              <span style="font-size:9px;color:#8AA4A0;">Sep</span>
+              <span style="font-size:9px;color:#8AA4A0;">Oct</span>
+              <span style="font-size:9px;color:#8AA4A0;">Nov</span>
+            </div>
+          </div>
+          <div class="ai-rec float">
+            <div class="ai-rec-label">✦ AI GROWTH ASSISTANT</div>
+            <div class="ai-rec-text">Your Google Ads campaign is generating the most qualified inquiries this month. Consider increasing its budget by 20%.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 6: OVERVIEW -->
+    <div class="scene" id="s6">
+      <div class="ov-title">Your Institute's Growth Journey, Simplified.</div>
+      <div class="ov-sub">From the first inquiry to confirmed admission, AcademyGrowth connects every milestone.</div>
+      <div class="ov-flow">
+        <div class="ov-step">
+          <div class="ov-icon-wrap">📢</div>
+          <div class="ov-label">ATTRACT</div>
+          <div class="ov-mini">Campaigns & reach</div>
+          <div class="ov-check">✓</div>
+        </div>
+        <div class="ov-arrow ov-arr-1">
+          <svg viewBox="0 0 60 12" fill="none" xmlns="http://www.w3.org/2000/svg" height="12">
+            <line x1="0" y1="6" x2="52" y2="6" stroke="#119B83" stroke-width="2" class="ov-arrow-line"/>
+            <polyline points="46,2 56,6 46,10" stroke="#119B83" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="ov-step">
+          <div class="ov-icon-wrap">📥</div>
+          <div class="ov-label">CAPTURE</div>
+          <div class="ov-mini">All leads, one place</div>
+          <div class="ov-check">✓</div>
+        </div>
+        <div class="ov-arrow ov-arr-2">
+          <svg viewBox="0 0 60 12" fill="none" xmlns="http://www.w3.org/2000/svg" height="12">
+            <line x1="0" y1="6" x2="52" y2="6" stroke="#119B83" stroke-width="2" class="ov-arrow-line"/>
+            <polyline points="46,2 56,6 46,10" stroke="#119B83" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="ov-step">
+          <div class="ov-icon-wrap">🤝</div>
+          <div class="ov-label">CONNECT</div>
+          <div class="ov-mini">Smart follow-ups</div>
+          <div class="ov-check">✓</div>
+        </div>
+        <div class="ov-arrow ov-arr-3">
+          <svg viewBox="0 0 60 12" fill="none" xmlns="http://www.w3.org/2000/svg" height="12">
+            <line x1="0" y1="6" x2="52" y2="6" stroke="#119B83" stroke-width="2" class="ov-arrow-line"/>
+            <polyline points="46,2 56,6 46,10" stroke="#119B83" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="ov-step">
+          <div class="ov-icon-wrap">🎓</div>
+          <div class="ov-label">CONVERT</div>
+          <div class="ov-mini">Admissions pipeline</div>
+          <div class="ov-check">✓</div>
+        </div>
+        <div class="ov-arrow ov-arr-4">
+          <svg viewBox="0 0 60 12" fill="none" xmlns="http://www.w3.org/2000/svg" height="12">
+            <line x1="0" y1="6" x2="52" y2="6" stroke="#119B83" stroke-width="2" class="ov-arrow-line"/>
+            <polyline points="46,2 56,6 46,10" stroke="#119B83" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="ov-step">
+          <div class="ov-icon-wrap">📈</div>
+          <div class="ov-label">GROW</div>
+          <div class="ov-mini">Analytics & AI insights</div>
+          <div class="ov-check">✓</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /canvas -->
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="stage-dots" id="stageDots">
+    <div class="s-dot active" data-scene="0"></div>
+    <div class="s-dot" data-scene="1"></div>
+    <div class="s-dot" data-scene="2"></div>
+    <div class="s-dot" data-scene="3"></div>
+    <div class="s-dot" data-scene="4"></div>
+    <div class="s-dot" data-scene="5"></div>
+  </div>
+</div>
+
+<script>
+  const scenes = ['s1','s2','s3','s4','s5','s6'];
+  const durations = [4000, 4000, 4000, 5000, 5000, 4000]; // ms per scene
+  const totalTime = durations.reduce((a,b)=>a+b,0);
+  let current = 0;
+  let timer = null;
+  let startTime = null;
+  let elapsed = 0;
+  let rafId = null;
+
+  const dots = document.querySelectorAll('.s-dot');
+  const fill = document.getElementById('progressFill');
+
+  // Number counters for scene 5
+  const counters = {
+    cpi:  { el: document.getElementById('cpi'),  target: 487,  prefix: '₹', suffix: '' },
+    cvr:  { el: document.getElementById('cvr'),  target: 68,   prefix: '', suffix: '%' },
+    adm:  { el: document.getElementById('adm'),  target: 47,   prefix: '', suffix: '' },
+  };
+  let counterRaf = null;
+
+  function animateCounters() {
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      Object.values(counters).forEach(c => {
+        c.el.textContent = c.prefix + Math.round(c.target * ease) + c.suffix;
+      });
+      if (t < 1) counterRaf = requestAnimationFrame(step);
+    }
+    counterRaf = requestAnimationFrame(step);
+  }
+
+  function resetCounters() {
+    if (counterRaf) cancelAnimationFrame(counterRaf);
+    Object.values(counters).forEach(c => {
+      c.el.textContent = c.prefix + '0' + c.suffix;
+    });
+  }
+
+  function goTo(idx) {
+    // Hide all
+    document.getElementById(scenes[current]).classList.remove('active');
+    dots[current].classList.remove('active');
+
+    if (current === 4) resetCounters();
+
+    current = idx;
+    const el = document.getElementById(scenes[current]);
+    el.classList.add('active');
+    dots[current].classList.add('active');
+
+    if (current === 4) {
+      setTimeout(animateCounters, 600);
+    }
+
+    elapsed = durations.slice(0, current).reduce((a,b)=>a+b, 0);
+    startTime = performance.now();
+    animateProgress();
+  }
+
+  function animateProgress() {
+    if (rafId) cancelAnimationFrame(rafId);
+    function step(now) {
+      const sceneElapsed = now - startTime;
+      const totalElapsed = elapsed + sceneElapsed;
+      const pct = Math.min((totalElapsed / totalTime) * 100, 100);
+      fill.style.width = pct + '%';
+      if (sceneElapsed < durations[current]) {
+        rafId = requestAnimationFrame(step);
+      }
+    }
+    rafId = requestAnimationFrame(step);
+  }
+
+  function next() {
+    const nextIdx = (current + 1) % scenes.length;
+    goTo(nextIdx);
+  }
+
+  function startTimer() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => {
+      next();
+    }, durations[current]);
+  }
+
+  // Override: restart interval when going to next
+  function advance() {
+    clearInterval(timer);
+    next();
+    timer = setInterval(advance, durations[current]);
+  }
+
+  // Simple sequential timer
+  function schedule() {
+    clearInterval(timer);
+    timer = setTimeout(function tick() {
+      next();
+      timer = setTimeout(tick, durations[current]);
+    }, durations[current]);
+  }
+
+  // Start
+  startTime = performance.now();
+  animateProgress();
+  schedule();
+
+  // Dot clicks
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearTimeout(timer);
+      goTo(parseInt(dot.dataset.scene));
+      schedule();
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,20 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  Layers,
   Sparkles,
+  ArrowRight,
+  Layers,
   BarChart3,
   Award,
   Users,
   Bot,
   CheckCircle2,
-  ArrowRight,
-  Kanban,
-  CalendarCheck,
-  TrendingUp,
-  FileCheck2,
-  UserCheck,
-  Zap,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -22,12 +16,11 @@ import { PublicNavbar } from '@/components/marketing/public-navbar';
 import { PublicFooter } from '@/components/marketing/public-footer';
 import { SectionHeading } from '@/components/marketing/section-heading';
 import { CTASection } from '@/components/marketing/cta-section';
-import { AssetPlaceholder } from '@/components/marketing/asset-placeholder';
 
 export const metadata = {
-  title: 'Features — AcademyGrowth | Complete Growth Suite for Coaching Academies',
+  title: 'Features & Tools — AcademyGrowth',
   description:
-    'Explore Admission CRM, AI Content Studio, Campaign Analytics, Student Success Vault, and Team Management designed specifically for coaching institutes.',
+    'Deep dive into AcademyGrowth core modules: Admission CRM, AI Content Studio, Marketing Analytics, Student Success Vault, Team Management, and AI Growth Assistant.',
 };
 
 export default function FeaturesPage() {
@@ -36,82 +29,86 @@ export default function FeaturesPage() {
       <PublicNavbar />
 
       <main className="flex-1">
-        {/* Header Hero */}
-        <section className="bg-gradient-to-b from-[#EFF7F4]/60 via-background to-background pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+        {/* Features Hero */}
+        <section className="bg-markova-grid-hero border-b border-border-subtle/60 pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Badge
               variant="outline"
-              className="mb-4 border-brand-300 bg-white/80 px-3.5 py-1 text-xs font-semibold text-brand-900 shadow-soft"
+              className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-brand-300 bg-white/90 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-brand-900 shadow-soft"
             >
-              Product Deep Dive
+              Comprehensive Suite
             </Badge>
 
             <h1 className="font-heading text-3xl font-extrabold tracking-tight text-text-primary sm:text-5xl lg:text-6xl leading-[1.15]">
-              Everything Your Coaching Institute{' '}
+              Everything Your Institute Needs to{' '}
               <span className="text-brand-900 underline decoration-brand-400 decoration-wavy decoration-from-font underline-offset-8">
-                Needs to Grow
+                Scale
               </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-base sm:text-lg text-text-secondary leading-relaxed">
-              Manage admissions, create marketing campaigns, track performance, and
-              make smarter decisions with one connected, purpose-built platform.
+              Explore the six interconnected modules engineered specifically for
+              coaching academies, competitive exam centers, and educational founders.
             </p>
           </div>
         </section>
 
         {/* Feature 1: Admission CRM */}
-        <section id="crm" className="border-t border-border-subtle bg-white py-16 sm:py-20 scroll-mt-20">
+        <section
+          id="admission-crm"
+          className="border-t border-border-subtle bg-white py-16 sm:py-20 scroll-mt-20"
+        >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
-                  <Kanban className="h-4 w-4 text-brand-700" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
+                  <Layers className="h-4 w-4 text-brand-700" />
                   <span>Module 1 • Admission CRM</span>
                 </div>
 
                 <h2 className="font-heading text-2xl font-bold tracking-tight text-text-primary sm:text-3xl lg:text-4xl">
-                  Centralized Inquiry & Lead Pipeline Management
+                  Visual Kanban Pipeline for Coaching Inquiries
                 </h2>
 
                 <p className="mt-4 text-base text-text-secondary leading-relaxed">
-                  Never let an inquiry slip through the cracks. The AcademyGrowth
-                  CRM is structured as an interactive Kanban pipeline specifically
-                  modeled around the Indian coaching admission lifecycle: from
-                  initial inquiry to counselling, follow-up, and confirmed admission.
+                  Never lose a student lead again. Move inquiries smoothly across
+                  specialized coaching stages: from initial inquiry capture to
+                  counsellor assignment, campus visit scheduling, scholarship test
+                  scoring, and final admission fee payment.
                 </p>
 
                 <div className="mt-6 space-y-3">
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>Interactive Kanban Board:</strong> Visual stages
-                      including New Inquiry, Contacted, Counselling Scheduled,
-                      Interested, and Confirmed Admission.
+                      <strong>Multi-Channel Lead Ingestion:</strong> Capture leads from
+                      walk-ins, web landing pages, Meta lead ads, and phone calls
+                      into one unified inbox.
                     </span>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>Automated Counsellor Routing:</strong> Round-robin or
-                      course-specific lead assignment to admission counsellors.
+                      <strong>Customizable Pipeline Stages:</strong> Tailor stages to
+                      your admission cycle: Walk-in, Demo Class, Aptitude Test,
+                      Counselling, Fee Paid.
                     </span>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>Follow-Up Timelines & Reminders:</strong> Date, time,
-                      and notes log for every phone consultation, parent meeting, or
-                      scholarship exam slot.
+                      <strong>Counsellor Assignment & Reminders:</strong> Assign leads
+                      to specific team members with scheduled follow-up alerts via
+                      WhatsApp.
                     </span>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>Inquiry Status History:</strong> Full audit trail of
+                      <strong>Comprehensive Activity Timeline:</strong> Full audit trail of
                       every interaction and status update.
                     </span>
                   </div>
@@ -119,7 +116,7 @@ export default function FeaturesPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Try Admission CRM Free</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -129,7 +126,7 @@ export default function FeaturesPage() {
 
               {/* Visual Illustration: Admission CRM */}
               <div className="flex w-full items-center justify-center">
-                <div className="relative flex h-[210px] sm:h-[260px] lg:h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border-subtle bg-white p-4 shadow-soft sm:p-6 transition-all hover:shadow-medium">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
                   <img
                     src="/assets/images/Admission%20CRM%20Kanban%20Pipeline%20Animation.svg"
                     alt="Admission CRM Kanban Pipeline Interactive Illustration"
@@ -151,7 +148,7 @@ export default function FeaturesPage() {
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               {/* Visual Illustration: AI Content Studio */}
               <div className="order-2 flex w-full items-center justify-center lg:order-1">
-                <div className="relative flex h-[210px] sm:h-[260px] lg:h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl border border-border-subtle bg-white p-4 shadow-soft sm:p-6 transition-all hover:shadow-medium">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
                   <img
                     src="/assets/images/AI%20Marketing%20Content%20Generation%20Animation.svg"
                     alt="AI Marketing Content Generation Interactive Illustration"
@@ -162,45 +159,44 @@ export default function FeaturesPage() {
               </div>
 
               <div className="order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <Sparkles className="h-4 w-4 text-brand-700" />
                   <span>Module 2 • AI Content Studio</span>
                 </div>
 
                 <h2 className="font-heading text-2xl font-bold tracking-tight text-text-primary sm:text-3xl lg:text-4xl">
-                  AI-Powered Content & Copywriting Studio
+                  Generate High-Converting Marketing in Seconds
                 </h2>
 
                 <p className="mt-4 text-base text-text-secondary leading-relaxed">
-                  Eliminate writer&apos;s block and stop paying hefty marketing agency
-                  retainers. AcademyGrowth generates targeted, persuasive promotional
-                  content tailored to parent aspirations and student motivations.
+                  Eliminate creative paralysis. Generate persuasive, exam-specific
+                  promotional copy for upcoming JEE, NEET, MHT-CET, and UPSC batches
+                  with domain-aware AI prompts built specifically for coaching
+                  founders.
                 </p>
 
                 <div className="mt-6 space-y-3">
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>Promotional Captions & Social Ads:</strong> Generate
-                      ready-to-post copy for Meta, Instagram, YouTube community, and
-                      LinkedIn.
+                      <strong>Social Media & Feed Ad Copy:</strong> Engaging posts and
+                      captions tailored for Instagram, Facebook, and LinkedIn.
                     </span>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>WhatsApp Broadcast Templates:</strong> High-converting
-                      announcement messages for batch launches, scholarship tests,
-                      and syllabus workshops.
+                      <strong>WhatsApp Broadcast Campaigns:</strong> High-converting
+                      direct messages formatted for parent outreach and seminar invites.
                     </span>
                   </div>
 
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
-                      <strong>Banner & Print Headlines:</strong> Punchy slogans and
-                      copy for offline banners, hoardings, and pamphlet handouts.
+                      <strong>Exam Tips & Motivation Posts:</strong> Value-adding content
+                      that builds trust with students throughout the academic year.
                     </span>
                   </div>
 
@@ -215,7 +211,7 @@ export default function FeaturesPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Explore Content Studio</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -234,7 +230,7 @@ export default function FeaturesPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <BarChart3 className="h-4 w-4 text-brand-700" />
                   <span>Module 3 • Marketing Analytics</span>
                 </div>
@@ -287,7 +283,7 @@ export default function FeaturesPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>View Analytics Dashboard</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -295,17 +291,16 @@ export default function FeaturesPage() {
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-feature-analytics"
-                  label="Marketing Analytics Growth Chart Animation"
-                  assetNeeded="Visual chart animation showing multi-channel conversion curves and CAC reduction metrics."
-                  searchKeywords="analytics dashboard line chart growth animation Lottie"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="chart"
-                />
+              {/* Integrated Visual: Marketing Analytics Growth Chart */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[500px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <img
+                    src="/assets/images/Marketing%20Analytics%20Growth%20Chart%20Animation.svg"
+                    alt="Marketing Analytics Growth Chart Interactive Animation"
+                    className="h-auto max-h-full w-auto max-w-full object-contain object-center"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -318,20 +313,19 @@ export default function FeaturesPage() {
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-              <div className="order-2 lg:order-1">
-                <AssetPlaceholder
-                  id="placeholder-feature-vault"
-                  label="Student Achievement Celebration Animation"
-                  assetNeeded="Animation featuring graduation caps, exam rank badges, and verified testimonial showcase."
-                  searchKeywords="student graduation achievement trophy celebration animation Lottie"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="award"
-                />
+              <div className="order-2 flex w-full items-center justify-center lg:order-1">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <img
+                    src="/assets/images/Student%20Achievement%20Celebration%20Animation.svg"
+                    alt="Student Achievement Celebration Interactive Animation"
+                    className="h-auto max-h-full w-auto max-w-full object-contain object-center"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               <div className="order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <Award className="h-4 w-4 text-brand-700" />
                   <span>Module 4 • Student Success Vault</span>
                 </div>
@@ -374,7 +368,7 @@ export default function FeaturesPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Explore Success Vault</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -393,7 +387,7 @@ export default function FeaturesPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <Users className="h-4 w-4 text-brand-700" />
                   <span>Module 5 • Team & Counsellor Management</span>
                 </div>
@@ -436,7 +430,7 @@ export default function FeaturesPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Set Up Your Team</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -444,17 +438,16 @@ export default function FeaturesPage() {
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-feature-team"
-                  label="Team Collaboration Animation"
-                  assetNeeded="Visual animation illustrating team members collaborating on student admissions with secure role tags."
-                  searchKeywords="team collaboration people working animation Lottie"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="users"
-                />
+              {/* Integrated Visual: Team Collaboration */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <img
+                    src="/assets/images/Team%20Collaboration%20Animation.svg"
+                    alt="Team Collaboration Interactive Animation"
+                    className="h-auto max-h-full w-auto max-w-full object-contain object-center"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -467,20 +460,19 @@ export default function FeaturesPage() {
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-              <div className="order-2 lg:order-1">
-                <AssetPlaceholder
-                  id="placeholder-feature-ai"
-                  label="AI Assistant Data Insights Animation"
-                  assetNeeded="Visual animation showing proactive AI notification alerts and conversion bottleneck recommendations."
-                  searchKeywords="AI assistant chatbot analytics animation Lottie"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="sparkles"
-                />
+              <div className="order-2 flex w-full items-center justify-center lg:order-1">
+                <div className="relative flex aspect-square w-full max-w-[440px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <img
+                    src="/assets/images/AI%20Assistant%20Data%20Insights%20Animation.gif"
+                    alt="AI Assistant Data Insights Animated Visual"
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               <div className="order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <Bot className="h-4 w-4 text-brand-700" />
                   <span>Module 6 • AI Growth Assistant</span>
                 </div>
@@ -523,8 +515,8 @@ export default function FeaturesPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
-                      <span>Experience AI Assistant</span>
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
+                      <span>Experience AI Assistant Free</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
@@ -534,14 +526,14 @@ export default function FeaturesPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* CTA */}
         <CTASection
-          title="Supercharge Your Academy's Admissions"
-          description="Join coaching directors across India who use AcademyGrowth to streamline admissions and scale enrollments."
-          primaryCtaText="Start 14-Day Free Trial"
+          title="Ready to Supercharge Your Institute Operations?"
+          description="Get all six modules in one affordable subscription. Start your 14-day free trial now."
+          primaryCtaText="Start Free Trial"
           primaryCtaHref="/signup"
-          secondaryCtaText="Contact Sales"
-          secondaryCtaHref="/contact"
+          secondaryCtaText="Compare Plans"
+          secondaryCtaHref="/pricing"
         />
       </main>
 
@@ -549,4 +541,3 @@ export default function FeaturesPage() {
     </div>
   );
 }
-

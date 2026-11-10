@@ -1,29 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
-  GraduationCap,
   Sparkles,
   ArrowRight,
   CheckCircle2,
   Atom,
   Binary,
-  Compass,
-  Building2,
   BookOpen,
+  Briefcase,
+  GraduationCap,
+  ShieldCheck,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { PublicNavbar } from '@/components/marketing/public-navbar';
 import { PublicFooter } from '@/components/marketing/public-footer';
 import { SectionHeading } from '@/components/marketing/section-heading';
 import { CTASection } from '@/components/marketing/cta-section';
-import { AssetPlaceholder } from '@/components/marketing/asset-placeholder';
 
 export const metadata = {
-  title: 'Solutions — AcademyGrowth | Built for JEE, NEET, MHT-CET & UPSC Academies',
+  title: 'Institute Solutions — AcademyGrowth',
   description:
-    'Tailored admissions and marketing workflows for JEE & NEET, MHT-CET, UPSC, and specialized coaching academies.',
+    'Tailored growth and admissions solutions for JEE & NEET, MHT-CET, UPSC, Foundation, and commercial coaching academies.',
 };
 
 export default function SolutionsPage() {
@@ -33,26 +33,26 @@ export default function SolutionsPage() {
 
       <main className="flex-1">
         {/* Solutions Hero */}
-        <section className="bg-gradient-to-b from-[#EFF7F4]/60 via-background to-background pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+        <section className="bg-markova-grid-hero border-b border-border-subtle/60 pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Badge
               variant="outline"
-              className="mb-4 border-brand-300 bg-white/80 px-3.5 py-1 text-xs font-semibold text-brand-900 shadow-soft"
+              className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-brand-300 bg-white/90 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-brand-900 shadow-soft"
             >
-              Tailored Solutions
+              Domain-Specific Playbooks
             </Badge>
 
             <h1 className="font-heading text-3xl font-extrabold tracking-tight text-text-primary sm:text-5xl lg:text-6xl leading-[1.15]">
-              One Platform.{' '}
+              Tailored for Every Type of{' '}
               <span className="text-brand-900 underline decoration-brand-400 decoration-wavy decoration-from-font underline-offset-8">
-                Different Coaching Goals.
+                Coaching Academy
               </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-3xl text-base sm:text-lg text-text-secondary leading-relaxed">
-              AcademyGrowth helps coaching institutes organize admissions, improve
-              marketing, and understand their growth regardless of target exam or
-              batch size.
+              Different exam domains require completely distinct marketing rhythms,
+              admission cycles, and parent conversations. AcademyGrowth provides
+              purpose-built workflows for each.
             </p>
           </div>
         </section>
@@ -65,7 +65,7 @@ export default function SolutionsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <Atom className="h-4 w-4 text-brand-700" />
                   <span>Engineering & Medical Prep</span>
                 </div>
@@ -119,7 +119,7 @@ export default function SolutionsPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Start Free Trial for JEE/NEET</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -127,17 +127,18 @@ export default function SolutionsPage() {
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-solution-jee"
-                  label="JEE & NEET Admissions Funnel Illustration"
-                  assetNeeded="Vector illustration of engineering/medical coaching students and counselor pipeline."
-                  searchKeywords="stem medical engineering students learning illustration SVG"
-                  format="SVG"
-                  aspectRatio="video"
-                  icon="compass"
-                />
+              {/* Integrated Illustration: JEE & NEET */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <Image
+                    src="/assets/images/JEE & NEET Admissions Funnel.png"
+                    alt="JEE and NEET Admissions Funnel Workflow Illustration"
+                    width={1159}
+                    height={1358}
+                    className="h-full w-full object-contain"
+                    sizes="(max-width: 768px) 100vw, 480px"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -150,20 +151,21 @@ export default function SolutionsPage() {
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-              <div className="order-2 lg:order-1">
-                <AssetPlaceholder
-                  id="placeholder-solution-cet"
-                  label="State CET Entrance Campaign Illustration"
-                  assetNeeded="Illustration showing regional examination marketing and student inquiry flow."
-                  searchKeywords="regional university student campus illustration SVG"
-                  format="SVG"
-                  aspectRatio="video"
-                  icon="layers"
-                />
+              <div className="order-2 flex w-full items-center justify-center lg:order-1">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <Image
+                    src="/assets/images/State CET Entrance Campaign Illustration.png"
+                    alt="State CET Entrance Campaign Strategy Illustration"
+                    width={1199}
+                    height={1312}
+                    className="h-full w-full object-contain"
+                    sizes="(max-width: 768px) 100vw, 480px"
+                  />
+                </div>
               </div>
 
               <div className="order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <Binary className="h-4 w-4 text-brand-700" />
                   <span>State Entrance Exams</span>
                 </div>
@@ -200,6 +202,15 @@ export default function SolutionsPage() {
                   <div className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
                     <span className="text-sm text-text-primary">
+                      <strong>College Cut-off Counselling Templates:</strong> Provide
+                      counsellors with ready reference cards for top state college
+                      percentiles.
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-5 w-5 text-brand-700 shrink-0 mt-0.5" />
+                    <span className="text-sm text-text-primary">
                       <strong>Fast Inquiry Conversion:</strong> Keep counsellor
                       turnaround time under 15 minutes with automated WhatsApp
                       acknowledgments.
@@ -209,7 +220,7 @@ export default function SolutionsPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Start Free Trial for MHT-CET</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -228,7 +239,7 @@ export default function SolutionsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-lg bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900 mb-4">
+                <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 mb-4 shadow-soft">
                   <BookOpen className="h-4 w-4 text-brand-700" />
                   <span>Civil Services & Government Exams</span>
                 </div>
@@ -275,7 +286,7 @@ export default function SolutionsPage() {
 
                 <div className="mt-8">
                   <Link href="/signup">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Start Free Trial for UPSC</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -283,17 +294,18 @@ export default function SolutionsPage() {
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-solution-upsc"
-                  label="UPSC Aspirant Journey Illustration"
-                  assetNeeded="Illustration showing civil service aspirants, library study, and mentor consultation."
-                  searchKeywords="student reading books library mentor illustration SVG"
-                  format="SVG"
-                  aspectRatio="video"
-                  icon="award"
-                />
+              {/* Integrated Illustration: UPSC */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[400px] w-full max-w-[480px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <Image
+                    src="/assets/images/UPSC Aspirant Journey Illustration.png"
+                    alt="UPSC Aspirant Journey Mentorship and Preparation Illustration"
+                    width={1199}
+                    height={1312}
+                    className="h-full w-full object-contain"
+                    sizes="(max-width: 768px) 100vw, 480px"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -314,36 +326,45 @@ export default function SolutionsPage() {
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <Card className="border-border-subtle bg-white p-6 shadow-soft">
                 <CardContent className="p-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
+                    <Briefcase className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-lg font-bold text-text-primary">
                     Commerce, CA & CS Academies
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                    Organize admissions for CA Foundation, Inter, and Final batches
-                    with custom fee installment stages and orientation dates.
+                    Manage multi-level registrations for CA Foundation, Inter, and
+                    Final batches with targeted intake tracking.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="border-border-subtle bg-white p-6 shadow-soft">
                 <CardContent className="p-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
+                    <GraduationCap className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-lg font-bold text-text-primary">
-                    Foundation & Olympiad Centers
+                    K-12 & Foundation Classes
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                    Connect with parents of 6th-10th graders using child-centric
-                    academic counseling workflows and aptitude test schedules.
+                    Nurture long-term parent relationships for classes 8 through 10,
+                    building pipeline continuity for senior coaching.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="border-border-subtle bg-white p-6 shadow-soft">
                 <CardContent className="p-0">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-900 mb-4">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-lg font-bold text-text-primary">
-                    Language & Skill Academies
+                    Government Job Entrance
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                    Manage rolling monthly cohorts for IELTS, TOEFL, coding
-                    bootcamps, and professional certifications with ease.
+                    Capture high-volume application spikes for Banking (IBPS, SBI),
+                    SSC, Railway, and Defence academies.
                   </p>
                 </CardContent>
               </Card>
@@ -351,13 +372,13 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* CTA */}
         <CTASection
-          title="Ready to Elevate Your Institute's Admissions?"
-          description="Whatever exam or discipline you teach, AcademyGrowth gives your admissions and marketing team unfair advantage."
-          primaryCtaText="Start Your Free 14-Day Trial"
+          title="Empower Your Institute with Domain-Specific Workflows"
+          description="Whatever exam domain you specialize in, AcademyGrowth structures your admissions journey for scale."
+          primaryCtaText="Start 14-Day Free Trial"
           primaryCtaHref="/signup"
-          secondaryCtaText="Talk with Admissions Specialist"
+          secondaryCtaText="Contact Our Team"
           secondaryCtaHref="/contact"
         />
       </main>
@@ -366,4 +387,3 @@ export default function SolutionsPage() {
     </div>
   );
 }
-

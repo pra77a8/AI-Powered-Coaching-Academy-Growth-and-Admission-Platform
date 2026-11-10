@@ -83,11 +83,11 @@ export default function ContactPage() {
 
       <main className="flex-1">
         {/* Contact Hero */}
-        <section className="bg-gradient-to-b from-[#EFF7F4]/60 via-background to-background pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+        <section className="bg-markova-grid-hero border-b border-border-subtle/60 pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Badge
               variant="outline"
-              className="mb-4 border-brand-300 bg-white/80 px-3.5 py-1 text-xs font-semibold text-brand-900 shadow-soft"
+              className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-brand-300 bg-white/90 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-brand-900 shadow-soft"
             >
               Get in Touch
             </Badge>

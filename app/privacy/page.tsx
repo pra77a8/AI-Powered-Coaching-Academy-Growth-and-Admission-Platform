@@ -31,7 +31,7 @@ export default function PrivacyPage() {
 
           <Badge
             variant="outline"
-            className="mb-4 border-brand-300 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-900"
+            className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-brand-300 bg-brand-50 px-3.5 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-brand-900 shadow-soft"
           >
             Data Privacy & Security
           </Badge>

@@ -27,7 +27,7 @@ export function SectionHeading({
       {badge && (
         <Badge
           variant="outline"
-          className="mb-3 border-brand-300 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-800"
+          className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-brand-300 bg-brand-50/90 px-3.5 py-1.5 text-[13px] sm:text-[14px] font-semibold tracking-wide text-brand-900 shadow-soft"
         >
           {badge}
         </Badge>
@@ -38,11 +38,10 @@ export function SectionHeading({
       </h2>
 
       {description && (
-        <p className="mt-3 text-base text-text-secondary sm:text-lg leading-relaxed">
+        <p className="mt-3.5 text-base text-text-secondary sm:text-lg leading-relaxed">
           {description}
         </p>
       )}
     </div>
   );
 }
-

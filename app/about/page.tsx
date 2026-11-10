@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Sparkles,
   ArrowRight,
@@ -8,21 +9,21 @@ import {
   Compass,
   CheckCircle2,
   GraduationCap,
-  HeartHandshake,
+  Users,
+  Award,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { PublicNavbar } from '@/components/marketing/public-navbar';
 import { PublicFooter } from '@/components/marketing/public-footer';
 import { SectionHeading } from '@/components/marketing/section-heading';
 import { CTASection } from '@/components/marketing/cta-section';
-import { AssetPlaceholder } from '@/components/marketing/asset-placeholder';
 
 export const metadata = {
-  title: 'About Us — AcademyGrowth | Mission, Vision & Purpose',
+  title: 'About AcademyGrowth — Dedicated to Coaching Academy Growth',
   description:
-    'Learn how AcademyGrowth empowers coaching academies, educators, and admissions teams with intelligent software built specifically for education.',
+    'Learn why we built AcademyGrowth: a modern, intelligent admissions and marketing platform purpose-built for Indian coaching institutes.',
 };
 
 export default function AboutPage() {
@@ -32,11 +33,11 @@ export default function AboutPage() {
 
       <main className="flex-1">
         {/* About Hero */}
-        <section className="bg-gradient-to-b from-[#EFF7F4]/60 via-background to-background pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
+        <section className="bg-markova-grid-hero border-b border-border-subtle/60 pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Badge
               variant="outline"
-              className="mb-4 border-brand-300 bg-white/80 px-3.5 py-1 text-xs font-semibold text-brand-900 shadow-soft"
+              className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-brand-300 bg-white/90 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-brand-900 shadow-soft"
             >
               Our Mission
             </Badge>
@@ -56,7 +57,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Story & Problem */}
+        {/* Story & Problem (The Genesis - Approved Refined Concise Copy) */}
         <section className="border-t border-border-subtle bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
@@ -64,48 +65,41 @@ export default function AboutPage() {
                 <SectionHeading
                   align="left"
                   badge="The Genesis"
-                  title="The Challenge Behind Coaching Admissions"
-                  description="Coaching academies in India are vibrant centers of academic aspiration. Yet behind the scenes, their operational reality is overwhelmingly fragmented."
+                  title="Why Coaching Institutes Need a Better Growth System"
+                  description="Coaching institutes manage student inquiries through WhatsApp, spreadsheets, phone calls, advertisements and walk-ins. When these activities remain disconnected, inquiries get missed, follow-ups are delayed and marketing performance becomes difficult to measure."
                 />
 
-                <div className="mt-6 space-y-4 text-sm text-text-secondary leading-relaxed">
+                <div className="mt-6 space-y-4 text-base text-text-secondary leading-relaxed">
                   <p>
-                    Every year during exam announcement seasons, coaching
-                    directors are flooded with student inquiries across WhatsApp,
-                    paper registers, Facebook lead ads, phone calls, and campus
-                    walk-ins.
-                  </p>
-                  <p>
-                    Without purpose-built tools, inquiries get lost. Counsellor
-                    follow-ups happen days too late. Marketing budgets are spent
-                    blindly on pamphlets and newspaper notices without knowing
-                    which campaigns produced actual enrolled students.
-                  </p>
-                  <p>
-                    General-purpose corporate CRMs are designed for B2B enterprise
-                    software deals with complex deal stages and bloated pricing.
-                    They do not understand batch intakes, scholarship test
-                    schedules, parent counselling psychology, or exam timelines.
+                    General-purpose CRMs often fail to address the specific admission and marketing workflows of coaching academies.
                   </p>
                   <p className="font-semibold text-text-primary">
-                    AcademyGrowth was conceived to solve this exact problem:
-                    providing a streamlined, affordable, all-in-one growth platform
-                    engineered from the ground up for coaching academies.
+                    AcademyGrowth brings these activities together in one streamlined platform, helping institutes manage admissions, improve marketing and make informed growth decisions.
                   </p>
+                </div>
+
+                <div className="mt-8">
+                  <Link href="/signup">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
+                      <span>Experience AcademyGrowth Free</span>
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
-              {/* Visual Placeholder */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-about-story"
-                  label="Education Innovation & Academy Growth Illustration"
-                  assetNeeded="Visual vector illustration symbolizing modern digital tools transforming coaching academy management."
-                  searchKeywords="education innovation digital learning illustration SVG"
-                  format="SVG"
-                  aspectRatio="video"
-                  icon="compass"
-                />
+              {/* Integrated Visual Illustration: Education Innovation */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex h-[280px] sm:h-[340px] lg:h-[380px] w-full max-w-[540px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-3 shadow-medium transition-all hover:shadow-strong">
+                  <Image
+                    src="/assets/images/Education Innovation & Academy Growth Illustration.png"
+                    alt="Education Innovation & Academy Growth Illustration"
+                    width={1536}
+                    height={1024}
+                    className="h-full w-full object-contain"
+                    sizes="(max-width: 768px) 100vw, 540px"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -141,10 +135,10 @@ export default function AboutPage() {
                     Our Vision
                   </h3>
                   <p className="mt-4 text-sm text-text-secondary leading-relaxed">
-                    A world where coaching institutes of every size—from single-room
-                    neighborhood centers to regional multi-branch academies—possess
-                    the same technological sophistication and marketing precision as
-                    nationwide educational conglomerates.
+                    A vibrant Indian coaching ecosystem where quality coaching centers
+                    thrive sustainably through disciplined operational clarity,
+                    uncompromising student trust, and intelligent data-guided
+                    expansion.
                   </p>
                 </CardContent>
               </Card>
@@ -152,76 +146,63 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Core Principles */}
-        <section className="border-t border-border-subtle bg-white py-16 sm:py-20">
+        {/* Core Values */}
+        <section className="border-t border-border-subtle bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading
               badge="Our Values"
-              title="Guiding Principles We Stand By"
-              description="How we design our platform and interact with educators every day."
+              title="Guiding Principles Behind Every Feature"
+              description="How we think about software for coaching academies."
             />
 
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-900 mb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <GraduationCap className="h-5 w-5" />
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Educator First
+                <h4 className="font-heading text-lg font-bold text-text-primary">
+                  Student-Centric Velocity
                 </h4>
                 <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  We measure success by how much time and stress we remove from
-                  institute directors and teachers.
+                  Every inquiry represents an aspiring student and anxious parents.
+                  Our tools prioritize response speed and respectful counselling.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-900 mb-4">
-                  <HeartHandshake className="h-5 w-5" />
-                </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Ethical Social Proof
-                </h4>
-                <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  We support authentic result management and student consent,
-                  promoting honesty in education marketing.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-900 mb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Strict Data Privacy
+                <h4 className="font-heading text-lg font-bold text-text-primary">
+                  Ironclad Data Isolation
                 </h4>
                 <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  Student contact records and counselling discussions belong solely
-                  to the institute, secured by tenant-isolated RLS.
+                  Your student inquiries, counsellor notes, and financial figures
+                  belong strictly to your institute. Enforced by PostgreSQL RLS.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand-900 mb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Sparkles className="h-5 w-5" />
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Practical Innovation
+                <h4 className="font-heading text-lg font-bold text-text-primary">
+                  Pragmatic AI Assist
                 </h4>
                 <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  We build AI tools that solve real operational headaches, not
-                  gimmicks or empty hype.
+                  AI shouldn&apos;t replace human educators. It should eliminate
+                  tedious marketing drafting and surface actionable growth signals.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* CTA */}
         <CTASection
-          title="Join Us in Transforming Coaching Operations"
-          description="Experience a growth platform engineered with deep empathy for coaching academies."
-          primaryCtaText="Start 14-Day Free Trial"
+          title="Join Institutes Growing with AcademyGrowth"
+          description="Transform your admission operations and marketing predictability with our 14-day free trial."
+          primaryCtaText="Start Free Trial"
           primaryCtaHref="/signup"
           secondaryCtaText="Contact Our Team"
           secondaryCtaHref="/contact"
@@ -232,4 +213,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

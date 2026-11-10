@@ -15,21 +15,18 @@ import {
   TrendingDown,
   FileEdit,
   EyeOff,
-  ShieldCheck,
   Check,
-  Zap,
-  Target,
   Megaphone,
   UserCheck,
+  GraduationCap,
+  MessageSquare,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { PublicNavbar } from '@/components/marketing/public-navbar';
 import { PublicFooter } from '@/components/marketing/public-footer';
 import { SectionHeading } from '@/components/marketing/section-heading';
 import { CTASection } from '@/components/marketing/cta-section';
-import { AssetPlaceholder } from '@/components/marketing/asset-placeholder';
 
 export const metadata = {
   title: 'AcademyGrowth — AI-Powered Coaching Academy Growth & Admissions Platform',
@@ -44,16 +41,17 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* ========================================================================= */}
-        {/* 1. HERO SECTION                                                           */}
+        {/* 1. HERO SECTION WITH MARKOVA-INSPIRED ARCHITECTURAL GRID                  */}
         {/* ========================================================================= */}
-        <section className="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-24 lg:pb-32 bg-gradient-to-b from-[#EFF7F4]/60 via-background to-background">
-          {/* Subtle background glow */}
-          <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-brand-200/30 blur-3xl" />
+        <section className="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-24 lg:pb-32 bg-markova-grid-hero border-b border-border-subtle/60">
+          {/* Subtle geometric lighting accents */}
+          <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full bg-brand-200/25 blur-3xl" />
+          <div className="pointer-events-none absolute top-1/3 -right-24 w-80 h-80 rounded-full bg-brand-100/40 blur-3xl" />
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            {/* Small supporting label badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-white/80 px-4 py-1.5 text-xs font-semibold text-brand-900 shadow-soft backdrop-blur-sm mb-6 animate-fade-in">
-              <Sparkles className="h-3.5 w-3.5 text-brand-700" />
+            {/* Supporting label badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-brand-300 bg-white/90 px-4 py-1.5 text-xs sm:text-sm font-semibold text-brand-900 shadow-soft backdrop-blur-sm mb-6">
+              <Sparkles className="h-4 w-4 text-brand-700" />
               <span>Smarter Growth for Coaching Institutes</span>
             </div>
 
@@ -111,10 +109,10 @@ export default function HomePage() {
             </div>
 
             {/* ========================================================================= */}
-            {/* 2. DASHBOARD PREVIEW                                                      */}
+            {/* 2. DASHBOARD PREVIEW IN ARCHITECTURAL FRAME                               */}
             {/* ========================================================================= */}
             <div className="relative mx-auto mt-12 sm:mt-16 max-w-6xl">
-              <div className="group relative rounded-2xl border border-border-subtle bg-white p-2 shadow-strong sm:rounded-3xl sm:p-4">
+              <div className="group relative rounded-2xl border border-brand-200/80 bg-white/90 p-2.5 sm:p-4 shadow-strong backdrop-blur-sm sm:rounded-3xl">
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-neutral-100">
                   <Image
                     src="/assets/images/AcademyGrowth SaaS Dashboard Hero.png"
@@ -131,7 +129,7 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 3. PROBLEM SECTION                                                        */}
+        {/* 3. PROBLEM SECTION (FIXED BALANCED 3-COLUMN DESKTOP / 2-COL TABLET GRID)   */}
         {/* ========================================================================= */}
         <section className="border-t border-border-subtle bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -141,10 +139,11 @@ export default function HomePage() {
               description="Managing admissions and marketing with fragmented tools leads to lost students and wasted budgets."
             />
 
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Desktop: 3 equal columns in row 1, centered 2 equal columns in row 2 */}
+            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6">
               {/* Problem 1 */}
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600 mb-4">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600 mb-4 shrink-0">
                   <FileSpreadsheet className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -157,8 +156,8 @@ export default function HomePage() {
               </div>
 
               {/* Problem 2 */}
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 mb-4">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 mb-4 shrink-0">
                   <Clock className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -171,8 +170,8 @@ export default function HomePage() {
               </div>
 
               {/* Problem 3 */}
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 mb-4">
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 mb-4 shrink-0">
                   <TrendingDown className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -184,9 +183,9 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Problem 4 */}
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 mb-4">
+              {/* Problem 4 (Desktop centered 2-col row: offset 1 column via lg:col-start-2) */}
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-start-2 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 mb-4 shrink-0">
                   <FileEdit className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
@@ -198,18 +197,18 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Problem 5 */}
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium sm:col-span-2 lg:col-span-2">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-neutral-700 mb-4">
+              {/* Problem 5 (Equal dimensions as all cards) */}
+              <div className="flex flex-col justify-start rounded-2xl border border-border-subtle bg-surface p-6 shadow-soft transition-all hover:border-brand-200 hover:shadow-medium min-h-[220px] sm:col-span-1 lg:col-span-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-neutral-700 mb-4 shrink-0">
                   <EyeOff className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
-                  No Unified View of Institute Growth
+                  No Unified View of Growth
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                   Directors lack a single real-time dashboard connecting marketing
                   spend, counsellor workload, active follow-ups, and confirmed batch
-                  revenue. Decisions rely on guesswork instead of data.
+                  revenue.
                 </p>
               </div>
             </div>
@@ -227,47 +226,53 @@ export default function HomePage() {
               description="AcademyGrowth unites your entire admissions and growth lifecycle in one intelligent workspace."
             />
 
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft">
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {/* Feature Highlight 1 */}
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
-                  <Layers className="h-6 w-6" />
+                  <Users className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
-                  Admissions Management
+                  Admission CRM Pipeline
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  A high-velocity CRM Kanban pipeline to track student inquiries
-                  from initial contact to confirmed fee payment.
+                  Visual Kanban board customized for coaching academy workflows: New
+                  Inquiry, Contacted, Counselling Scheduled, Scholarship Test, and
+                  Enrolled.
                 </p>
               </div>
 
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft">
+              {/* Feature Highlight 2 */}
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Sparkles className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
-                  AI-Powered Marketing
+                  AI Marketing Content Studio
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  Generate exam-targeted ad copy, WhatsApp campaigns, and social
-                  posts calibrated for parent and student psychology.
+                  Generate exam countdowns, topper announcements, WhatsApp
+                  broadcast messages, and Meta ad copy tailored for JEE, NEET, CET,
+                  and UPSC.
                 </p>
               </div>
 
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft">
+              {/* Feature Highlight 3 */}
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <BarChart3 className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
-                  Marketing Analytics
+                  Marketing Campaign Analytics
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  Measure cost per inquiry (CPI) and cost per admission (CPA)
-                  across offline seminars, Meta ads, and school outreach.
+                  Track offline pamphlets, digital ads, and seminar costs. Measure
+                  exact Cost Per Inquiry (CPI) and Cost Per Admission (CPA).
                 </p>
               </div>
 
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft">
+              {/* Feature Highlight 4 */}
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Award className="h-6 w-6" />
                 </div>
@@ -275,34 +280,36 @@ export default function HomePage() {
                   Student Success Vault
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  Curate ranker results, score cards, and parent video testimonials
-                  with built-in student consent tracking.
+                  Centralize student achievements, ranks, scorecards, and parent
+                  testimonials to build irresistible social proof.
                 </p>
               </div>
 
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft">
+              {/* Feature Highlight 5 */}
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
-                  <Users className="h-6 w-6" />
+                  <UserCheck className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
-                  Team Collaboration
+                  Counsellor Accountability
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  Invite counsellors, marketers, and faculty with granular
-                  role-based permissions and activity tracking.
+                  Assign leads to specific counsellors, track response times, log
+                  call notes, and ensure zero inquiries slip through the cracks.
                 </p>
               </div>
 
-              <div className="flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft">
+              {/* Feature Highlight 6 */}
+              <div className="rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-900 mb-4">
                   <Bot className="h-6 w-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-text-primary">
-                  AI Growth Assistant
+                  AI Growth Recommendations
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  Receive intelligent alerts on counsellor response delays, campaign
-                  fatigue, and seasonal admission surge opportunities.
+                  Proactive suggestions to unblock slow follow-up queues, launch
+                  timely crash-course campaigns, and optimize marketing spend.
                 </p>
               </div>
             </div>
@@ -310,7 +317,7 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 5. PRODUCT FEATURES PREVIEW                                               */}
+        {/* 5. CORE MODULES PREVIEW                                                    */}
         {/* ========================================================================= */}
         <section className="border-t border-border-subtle bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -320,7 +327,7 @@ export default function HomePage() {
               description="Purpose-built features designed specifically for the unique workflows of Indian coaching academies."
             />
 
-            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {/* Feature 1 */}
               <Card className="flex flex-col justify-between border-border-subtle hover:border-brand-300 transition-all hover:shadow-medium">
                 <CardContent className="p-6">
@@ -331,16 +338,17 @@ export default function HomePage() {
                     Admission CRM
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                    Capture inquiries, organize leads in a visual Kanban board, track
-                    scheduled parent follow-ups, and manage admissions from one place.
+                    Track leads from initial inquiry to confirmed admission with
+                    Kanban pipeline stages, counsellor assignments, and automated
+                    follow-ups.
                   </p>
                 </CardContent>
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
                   <Link
-                    href="/features#crm"
+                    href="/features#admission-crm"
                     className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
                   >
-                    <span>Deep dive into Admission CRM</span>
+                    <span>Learn about CRM</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                   </Link>
                 </div>
@@ -356,8 +364,8 @@ export default function HomePage() {
                     AI Content Studio
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                    Create engaging marketing content, exam announcement banners,
-                    and persuasive promotional copy calibrated for your courses.
+                    Generate exam countdowns, topper announcements, WhatsApp
+                    broadcast messages, and ad copy tailored for JEE, NEET, and CET.
                   </p>
                 </CardContent>
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
@@ -365,7 +373,7 @@ export default function HomePage() {
                     href="/features#content-studio"
                     className="inline-flex items-center text-xs font-semibold text-brand-900 hover:text-brand-700"
                   >
-                    <span>Explore AI Content Studio</span>
+                    <span>Explore Content Studio</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                   </Link>
                 </div>
@@ -381,8 +389,8 @@ export default function HomePage() {
                     Marketing Analytics
                   </h3>
                   <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                    Understand campaigns, track advertising expenditure, compare
-                    inquiry sources, and calculate true admission conversion rates.
+                    Track campaigns and know your true Cost Per Inquiry and Cost Per
+                    Admission across every channel.
                   </p>
                 </CardContent>
                 <div className="border-t border-border-subtle p-4 bg-neutral-50/50 rounded-b-xl">
@@ -475,7 +483,7 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 6. HOW IT WORKS PREVIEW                                                   */}
+        {/* 6. CONNECTED WORKFLOW PIPELINE (ATTRACT -> CAPTURE -> CONNECT -> CONVERT -> GROW) */}
         {/* ========================================================================= */}
         <section className="bg-background py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -485,81 +493,127 @@ export default function HomePage() {
               description="A seamless 5-stage student acquisition pipeline engineered for maximum enrollment velocity."
             />
 
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-              {/* Step 1 */}
-              <div className="relative flex flex-col rounded-2xl border border-border-subtle bg-white p-5 shadow-soft">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-900 text-white font-heading font-bold text-sm mb-4">
-                  1
-                </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Attract Students
-                </h4>
-                <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  Launch targeted campaigns with AI-crafted marketing copy for JEE,
-                  NEET, CET, or board exam batches.
-                </p>
-              </div>
+            {/* Connected horizontal workflow container */}
+            <div className="relative mt-14">
+              {/* Connecting animated/dashed line on desktop */}
+              <div className="hidden lg:block absolute top-7 left-12 right-12 h-0.5 border-t-2 border-dashed border-brand-300/80 z-0" />
 
-              {/* Step 2 */}
-              <div className="relative flex flex-col rounded-2xl border border-border-subtle bg-white p-5 shadow-soft">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-900 text-white font-heading font-bold text-sm mb-4">
-                  2
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 relative z-10">
+                {/* Stage 1: Attract */}
+                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
+                      1
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
+                      <Megaphone className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
+                    Stage 1
+                  </span>
+                  <h4 className="font-heading text-base font-bold text-text-primary">
+                    Attract Students
+                  </h4>
+                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
+                    Launch targeted campaigns with AI-crafted marketing copy for JEE,
+                    NEET, CET, or board exam batches.
+                  </p>
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Capture Inquiries
-                </h4>
-                <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  Gather leads automatically from walk-ins, digital ads, and web
-                  forms into one central admission register.
-                </p>
-              </div>
 
-              {/* Step 3 */}
-              <div className="relative flex flex-col rounded-2xl border border-border-subtle bg-white p-5 shadow-soft">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-900 text-white font-heading font-bold text-sm mb-4">
-                  3
+                {/* Stage 2: Capture */}
+                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
+                      2
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
+                      <Layers className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
+                    Stage 2
+                  </span>
+                  <h4 className="font-heading text-base font-bold text-text-primary">
+                    Capture Inquiries
+                  </h4>
+                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
+                    Gather leads automatically from walk-ins, digital ads, and web
+                    forms into one central admission register.
+                  </p>
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Follow Up
-                </h4>
-                <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  Assign leads to counsellors, track conversation notes, and trigger
-                  scheduled WhatsApp/call reminders.
-                </p>
-              </div>
 
-              {/* Step 4 */}
-              <div className="relative flex flex-col rounded-2xl border border-border-subtle bg-white p-5 shadow-soft">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-900 text-white font-heading font-bold text-sm mb-4">
-                  4
+                {/* Stage 3: Connect */}
+                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
+                      3
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
+                      <MessageSquare className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
+                    Stage 3
+                  </span>
+                  <h4 className="font-heading text-base font-bold text-text-primary">
+                    Connect & Follow Up
+                  </h4>
+                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
+                    Assign leads to counsellors, track conversation notes, and trigger
+                    scheduled WhatsApp/call reminders.
+                  </p>
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Convert & Enroll
-                </h4>
-                <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  Conduct counselling sessions, record scholarship tests, and move
-                  students to confirmed admission.
-                </p>
-              </div>
 
-              {/* Step 5 */}
-              <div className="relative flex flex-col rounded-2xl border border-border-subtle bg-white p-5 shadow-soft">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-900 text-white font-heading font-bold text-sm mb-4">
-                  5
+                {/* Stage 4: Convert */}
+                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
+                      4
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
+                      <GraduationCap className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
+                    Stage 4
+                  </span>
+                  <h4 className="font-heading text-base font-bold text-text-primary">
+                    Convert & Enroll
+                  </h4>
+                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
+                    Conduct counselling sessions, record scholarship tests, and move
+                    students to confirmed admission.
+                  </p>
                 </div>
-                <h4 className="font-heading text-base font-bold text-text-primary">
-                  Measure & Grow
-                </h4>
-                <p className="mt-2 text-xs text-text-secondary leading-relaxed">
-                  Analyze cost per admission, identify high-performing counsellors,
-                  and optimize your marketing budget.
-                </p>
+
+                {/* Stage 5: Grow */}
+                <div className="group relative flex flex-col rounded-2xl border border-border-subtle bg-white p-6 shadow-soft transition-all hover:border-brand-300 hover:shadow-medium">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white font-heading font-bold text-sm shadow-soft transition-transform group-hover:scale-105">
+                      5
+                    </div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-800">
+                      <BarChart3 className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 mb-1">
+                    Stage 5
+                  </span>
+                  <h4 className="font-heading text-base font-bold text-text-primary">
+                    Measure & Grow
+                  </h4>
+                  <p className="mt-2 text-xs text-text-secondary leading-relaxed">
+                    Analyze cost per admission, identify high-performing counsellors,
+                    and optimize your marketing budget.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="mt-8 text-center">
+            <div className="mt-10 text-center">
               <Link href="/how-it-works">
-                <Button variant="outline" className="border-border-subtle">
+                <Button variant="outline" className="border-border-subtle shadow-soft hover:bg-neutral-50">
                   <span>Explore the Complete Growth Journey</span>
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -586,11 +640,11 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h4 className="font-heading text-sm font-bold text-text-primary">
-                    One Unified Platform
+                    Coaching-Specific Pipelines
                   </h4>
                   <p className="mt-1 text-xs text-text-secondary leading-relaxed">
-                    Eliminate disparate spreadsheets, messaging apps, and ad accounts.
-                    Everything lives in one central hub.
+                    Pre-configured stages for walk-ins, scholarship tests, and batch
+                    enrollments without custom coding.
                   </p>
                 </div>
               </div>
@@ -604,8 +658,8 @@ export default function HomePage() {
                     AI-Assisted Workflows
                   </h4>
                   <p className="mt-1 text-xs text-text-secondary leading-relaxed">
-                    Generate persuasive marketing campaigns and admission insights
-                    tailored to parent expectations.
+                    Generate high-converting exam campaigns and topper promotions in
+                    seconds.
                   </p>
                 </div>
               </div>
@@ -616,7 +670,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <h4 className="font-heading text-sm font-bold text-text-primary">
-                    Complete Admission Visibility
+                    Zero Inquiry Leakage
                   </h4>
                   <p className="mt-1 text-xs text-text-secondary leading-relaxed">
                     Track every student from first inquiry to fee submission with
@@ -674,15 +728,15 @@ export default function HomePage() {
         </section>
 
         {/* ========================================================================= */}
-        {/* 8. DEDICATED AI SECTION                                                   */}
+        {/* 8. DEDICATED AI SECTION WITH ANIMATED GIF                                 */}
         {/* ========================================================================= */}
-        <section className="bg-gradient-to-b from-background via-[#EFF7F4]/50 to-background py-16 sm:py-24">
+        <section className="bg-gradient-to-b from-background via-[#EFF7F4]/50 to-background py-16 sm:py-24 border-t border-border-subtle">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
               <div>
                 <SectionHeading
                   align="left"
-                  badge="Artificial Intelligence"
+                  badge="AI Marketing & Admissions Assistant"
                   title="Your AI-Powered Growth Partner"
                   description="Leverage domain-tuned AI designed for coaching academy growth. AcademyGrowth eliminates repetitive marketing toil so your educators can focus on teaching."
                 />
@@ -751,7 +805,7 @@ export default function HomePage() {
 
                 <div className="mt-8">
                   <Link href="/features#content-studio">
-                    <Button className="bg-brand-900 text-white hover:bg-brand-800">
+                    <Button className="bg-brand-900 text-white hover:bg-brand-800 shadow-soft">
                       <span>Explore AI Capabilities</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -759,17 +813,16 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Visual Placeholder for AI Animation */}
-              <div>
-                <AssetPlaceholder
-                  id="placeholder-home-ai"
-                  label="AI Marketing & Admissions Assistant Animation"
-                  assetNeeded="Interactive Lottie animation showing AI content generation and conversion insight recommendations."
-                  searchKeywords="AI assistant writing content animation Lottie JSON"
-                  format="Lottie JSON"
-                  aspectRatio="video"
-                  icon="sparkles"
-                />
+              {/* Integrated AI Assistant Animated GIF */}
+              <div className="flex w-full items-center justify-center">
+                <div className="relative flex aspect-square w-full max-w-[460px] items-center justify-center overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-4 shadow-medium transition-all hover:shadow-strong">
+                  <img
+                    src="/assets/images/AI%20Marketing%20&%20Admissions%20Assistant%20Animation.gif"
+                    alt="AI Marketing & Admissions Assistant Animated Visual"
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
