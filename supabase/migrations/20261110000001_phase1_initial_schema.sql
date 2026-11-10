@@ -274,6 +274,7 @@ RETURNS UUID AS $$
 DECLARE
     v_invitation RECORD;
     v_user_id UUID;
+    v_auth_user RECORD;
     v_user_email TEXT;
 BEGIN
     v_user_id := auth.uid();
@@ -281,10 +282,23 @@ BEGIN
         RAISE EXCEPTION 'Authentication required: caller must be an authenticated user.';
     END IF;
 
-    -- Derive and normalize caller's authenticated email
-    v_user_email := lower(trim(COALESCE(auth.jwt() ->> 'email', (SELECT email FROM public.users WHERE id = v_user_id))));
+    -- Query verified email directly from auth.users (do not rely on assumed JWT claims)
+    SELECT email, email_confirmed_at 
+    INTO v_auth_user
+    FROM auth.users 
+    WHERE id = v_user_id;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Authenticated user record not found in authentication system.';
+    END IF;
+
+    IF v_auth_user.email_confirmed_at IS NULL THEN
+        RAISE EXCEPTION 'Email address must be verified before accepting an employee invitation.';
+    END IF;
+
+    v_user_email := lower(trim(v_auth_user.email));
     IF v_user_email IS NULL OR length(v_user_email) = 0 THEN
-        RAISE EXCEPTION 'Caller email could not be determined from authentication session.';
+        RAISE EXCEPTION 'Caller email could not be determined from authentication system.';
     END IF;
 
     -- Validate and lock invitation token using row-level locking
@@ -299,7 +313,7 @@ BEGIN
         RAISE EXCEPTION 'Invalid, expired, or already accepted invitation token.';
     END IF;
 
-    -- Strict email verification
+    -- Strict email verification against confirmed auth email
     IF lower(trim(v_invitation.email)) != v_user_email THEN
         RAISE EXCEPTION 'Invitation email does not match authenticated user email.';
     END IF;

@@ -17,6 +17,7 @@ DECLARE
     v_user_b_owner UUID := '44444444-4444-4444-8444-444444444444';
     v_user_invitee UUID := '55555555-5555-4555-8555-555555555555';
     v_user_wrong_email UUID := '66666666-6666-4666-8666-666666666666';
+    v_user_unverified UUID := '77777777-7777-4777-8777-777777777777';
 
     v_inst_a UUID := 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
     v_inst_b UUID := 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
@@ -29,15 +30,16 @@ DECLARE
 BEGIN
     RAISE NOTICE 'Setting up test fixtures...';
 
-    -- Insert mock auth.users (if auth schema exists, otherwise fallback to users directly)
+    -- Insert mock auth.users with verified and unverified email states
     IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'auth' AND table_name = 'users') THEN
-        INSERT INTO auth.users (id, email, raw_user_meta_data) VALUES
-        (v_user_a_owner, 'owner_a@academy.com', '{"full_name": "Owner Alpha"}'::jsonb),
-        (v_user_a_counsellor, 'counsellor_a@academy.com', '{"full_name": "Counsellor Alpha"}'::jsonb),
-        (v_user_a_suspended, 'suspended_a@academy.com', '{"full_name": "Suspended Alpha"}'::jsonb),
-        (v_user_b_owner, 'owner_b@academy.com', '{"full_name": "Owner Beta"}'::jsonb),
-        (v_user_invitee, 'invitee@academy.com', '{"full_name": "Invited Employee"}'::jsonb),
-        (v_user_wrong_email, 'wrong@academy.com', '{"full_name": "Wrong Email Employee"}'::jsonb)
+        INSERT INTO auth.users (id, email, email_confirmed_at, raw_user_meta_data) VALUES
+        (v_user_a_owner, 'owner_a@academy.com', now(), '{"full_name": "Owner Alpha"}'::jsonb),
+        (v_user_a_counsellor, 'counsellor_a@academy.com', now(), '{"full_name": "Counsellor Alpha"}'::jsonb),
+        (v_user_a_suspended, 'suspended_a@academy.com', now(), '{"full_name": "Suspended Alpha"}'::jsonb),
+        (v_user_b_owner, 'owner_b@academy.com', now(), '{"full_name": "Owner Beta"}'::jsonb),
+        (v_user_invitee, 'invitee@academy.com', now(), '{"full_name": "Invited Employee"}'::jsonb),
+        (v_user_wrong_email, 'wrong@academy.com', now(), '{"full_name": "Wrong Email Employee"}'::jsonb),
+        (v_user_unverified, 'invitee@academy.com', NULL, '{"full_name": "Unverified Employee"}'::jsonb)
         ON CONFLICT (id) DO NOTHING;
     END IF;
 
@@ -48,7 +50,8 @@ BEGIN
     (v_user_a_suspended, 'suspended_a@academy.com', 'Suspended Alpha', '9876543212'),
     (v_user_b_owner, 'owner_b@academy.com', 'Owner Beta', '9876543213'),
     (v_user_invitee, 'invitee@academy.com', 'Invited Employee', '9876543214'),
-    (v_user_wrong_email, 'wrong@academy.com', 'Wrong Email Employee', '9876543215')
+    (v_user_wrong_email, 'wrong@academy.com', 'Wrong Email Employee', '9876543215'),
+    (v_user_unverified, 'unverified@academy.com', 'Unverified Employee', '9876543216')
     ON CONFLICT (id) DO NOTHING;
 
     -- Create Institutes
@@ -370,18 +373,36 @@ DO $$
 DECLARE
     v_user_invitee UUID := '55555555-5555-4555-8555-555555555555';
     v_user_wrong_email UUID := '66666666-6666-4666-8666-666666666666';
+    v_user_unverified UUID := '77777777-7777-4777-8777-777777777777';
     v_user_a_owner UUID := '11111111-1111-4111-8111-111111111111';
     v_inst_result UUID;
     v_exception_caught BOOLEAN := false;
 BEGIN
     RAISE NOTICE '--- Test 7: Invitation Acceptance Security ---';
 
-    -- 1. Mismatched email cannot accept invitation
+    -- 1. Unverified email user cannot accept invitation (even if email string matches)
+    PERFORM set_config('role', 'authenticated', true);
+    PERFORM set_config('request.jwt.claim.sub', v_user_unverified::text, true);
+    PERFORM set_config('request.jwt.claim.email', 'invitee@academy.com', true);
+    PERFORM set_config('request.jwt.claims', json_build_object('sub', v_user_unverified::text, 'email', 'invitee@academy.com')::text, true);
+
+    BEGIN
+        v_inst_result := public.accept_employee_invitation('token_valid_alpha');
+    EXCEPTION WHEN OTHERS THEN
+        v_exception_caught := true;
+    END;
+
+    IF NOT v_exception_caught THEN
+        RAISE EXCEPTION 'TEST 7 FAILED: Unverified email user accepted an invitation!';
+    END IF;
+
+    -- 2. Mismatched email cannot accept invitation
     PERFORM set_config('role', 'authenticated', true);
     PERFORM set_config('request.jwt.claim.sub', v_user_wrong_email::text, true);
     PERFORM set_config('request.jwt.claim.email', 'wrong@academy.com', true);
     PERFORM set_config('request.jwt.claims', json_build_object('sub', v_user_wrong_email::text, 'email', 'wrong@academy.com')::text, true);
 
+    v_exception_caught := false;
     BEGIN
         v_inst_result := public.accept_employee_invitation('token_valid_alpha');
     EXCEPTION WHEN OTHERS THEN
@@ -392,7 +413,7 @@ BEGIN
         RAISE EXCEPTION 'TEST 7 FAILED: Mismatched email accepted an invitation!';
     END IF;
 
-    -- 2. Expired invitation cannot be accepted
+    -- 3. Expired invitation cannot be accepted
     PERFORM set_config('request.jwt.claim.sub', v_user_invitee::text, true);
     PERFORM set_config('request.jwt.claim.email', 'invitee@academy.com', true);
     PERFORM set_config('request.jwt.claims', json_build_object('sub', v_user_invitee::text, 'email', 'invitee@academy.com')::text, true);
@@ -408,13 +429,13 @@ BEGIN
         RAISE EXCEPTION 'TEST 7 FAILED: Expired invitation was accepted!';
     END IF;
 
-    -- 3. Valid invitation acceptance succeeds
+    -- 4. Valid invitation acceptance succeeds for verified user
     v_inst_result := public.accept_employee_invitation('token_valid_alpha');
     IF v_inst_result != 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa' THEN
         RAISE EXCEPTION 'TEST 7 FAILED: Valid invitation returned unexpected institute ID.';
     END IF;
 
-    -- 4. Replay attack / double-acceptance is blocked
+    -- 5. Replay attack / double-acceptance is blocked
     v_exception_caught := false;
     BEGIN
         v_inst_result := public.accept_employee_invitation('token_valid_alpha');

@@ -25,6 +25,7 @@
 | DEC-10| Academic Insights Timing   | Defer Completely to Phase 3                        | [PENDING CONFIRMATION]  |
 | DEC-11| Transactional Email Engine | Resend (via Supabase Auth / React Email)           | [PENDING CONFIRMATION]  |
 | DEC-12| Multi-Branch Hierarchy     | Single-Center in MVP (Extensible Branch Schema)    | [APPROVED BY OWNER]     |
+| DEC-13| Ownership Transfer Policy   | Deferred Post-MVP (Single Active Owner Baseline)   | [APPROVED BY ARCHITECT] |
 +-------------------------------------------------------------------------------------------------------------------+
 ```
 
@@ -208,6 +209,18 @@
   2. *Extensible Database Architecture:* The `institutes` table includes a nullable self-referencing column: `parent_institute_id UUID REFERENCES public.institutes(id) ON DELETE CASCADE`.
   3. *Future Compatibility:* For MVP single-center institutes, `parent_institute_id` is `NULL`. When multi-branch hierarchy is enabled in Phase 3, branch centers will simply point to the parent institute, allowing multi-branch reporting with zero breaking schema changes.
 - **Current Status:** `[APPROVED BY OWNER]`
+
+---
+
+### DEC-13: Institute Ownership Transfer Policy (Deferred Post-MVP Scope)
+
+- **Context & Why It Matters:**  
+  Transferring institute ownership requires an atomic, two-phase transaction that elevates a designated active team member to `OWNER` while demoting the current owner to `ADMIN` without violating `idx_single_active_owner_per_user` or the invariant trigger preventing institutes with zero active owners.
+- **Approved Architectural Decision:**  
+  **Deferred to Post-MVP (Horizon 2).**
+  1. *MVP Scope Constraint:* In Phase 1 MVP, an institute retains its founding owner. Self-demotion and direct client-side owner assignment are strictly prevented to protect institutes from accidental lockout or unauthorized takeover.
+  2. *Future Implementation Design:* When ownership transfer is required, it must be implemented via a dedicated, audited `SECURITY DEFINER` RPC (`transfer_institute_ownership(p_new_owner_user_id UUID)`) that checks the recipient does not already own an institute, verifies active caller ownership, atomically updates both roles within a single transaction, and records an immutable log in `activity_logs`.
+- **Current Status:** `[APPROVED BY ARCHITECT]` (Deferred to Horizon 2)
 
 ---
 *End of Open Decisions & Architectural Review Sheet (`OPEN_DECISIONS.md`).*
